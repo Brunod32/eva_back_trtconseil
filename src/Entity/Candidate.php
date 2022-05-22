@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\CandidateRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -35,6 +38,14 @@ class Candidate implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean')]
     private bool $isValid;
+
+    #[ORM\ManyToMany(targetEntity: JobOffer::class, mappedBy: 'candidate')]
+    private Collection $jobOffers;
+
+    #[Pure] public function __construct()
+    {
+        $this->jobOffers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -150,6 +161,33 @@ class Candidate implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsValid(bool $isValid): self
     {
         $this->isValid = $isValid;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, JobOffer>
+     */
+    public function getJobOffers(): Collection
+    {
+        return $this->jobOffers;
+    }
+
+    public function addJobOffer(JobOffer $jobOffer): self
+    {
+        if (!$this->jobOffers->contains($jobOffer)) {
+            $this->jobOffers[] = $jobOffer;
+            $jobOffer->addCandidate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJobOffer(JobOffer $jobOffer): self
+    {
+        if ($this->jobOffers->removeElement($jobOffer)) {
+            $jobOffer->removeCandidate($this);
+        }
 
         return $this;
     }

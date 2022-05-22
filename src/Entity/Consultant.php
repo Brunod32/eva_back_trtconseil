@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\ConsultantRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -29,6 +32,14 @@ class Consultant implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string', length: 30, nullable: true)]
     private string $lastname;
+
+    #[ORM\OneToMany(mappedBy: 'consultant', targetEntity: JobOffer::class, orphanRemoval: true)]
+    private Collection $jobOffers;
+
+    #[Pure] public function __construct()
+    {
+        $this->jobOffers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +131,36 @@ class Consultant implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastname(?string $lastname): self
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, JobOffer>
+     */
+    public function getJobOffers(): Collection
+    {
+        return $this->jobOffers;
+    }
+
+    public function addJobOffer(JobOffer $jobOffer): self
+    {
+        if (!$this->jobOffers->contains($jobOffer)) {
+            $this->jobOffers[] = $jobOffer;
+            $jobOffer->setConsultant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeJobOffer(JobOffer $jobOffer): self
+    {
+        if ($this->jobOffers->removeElement($jobOffer)) {
+            // set the owning side to null (unless already changed)
+            if ($jobOffer->getConsultant() === $this) {
+                $jobOffer->setConsultant(null);
+            }
+        }
 
         return $this;
     }

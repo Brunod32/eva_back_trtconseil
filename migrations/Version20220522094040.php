@@ -1,0 +1,43 @@
+<?php
+
+declare(strict_types=1);
+
+namespace DoctrineMigrations;
+
+use Doctrine\DBAL\Schema\Schema;
+use Doctrine\Migrations\AbstractMigration;
+
+/**
+ * Auto-generated Migration: Please modify to your needs!
+ */
+final class Version20220522094040 extends AbstractMigration
+{
+    public function getDescription(): string
+    {
+        return '';
+    }
+
+    public function up(Schema $schema): void
+    {
+        // this up() migration is auto-generated, please modify it to your needs
+        $this->addSql('CREATE TABLE job_offer_candidate (job_offer_id INT NOT NULL, candidate_id INT NOT NULL, INDEX IDX_80EBBCEF3481D195 (job_offer_id), INDEX IDX_80EBBCEF91BD8781 (candidate_id), PRIMARY KEY(job_offer_id, candidate_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE job_offer_candidate ADD CONSTRAINT FK_80EBBCEF3481D195 FOREIGN KEY (job_offer_id) REFERENCES job_offer (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE job_offer_candidate ADD CONSTRAINT FK_80EBBCEF91BD8781 FOREIGN KEY (candidate_id) REFERENCES candidate (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE job_offer ADD consultant_id INT NOT NULL, ADD recruiter_id INT NOT NULL');
+        $this->addSql('ALTER TABLE job_offer ADD CONSTRAINT FK_288A3A4E44F779A2 FOREIGN KEY (consultant_id) REFERENCES consultant (id)');
+        $this->addSql('ALTER TABLE job_offer ADD CONSTRAINT FK_288A3A4E156BE243 FOREIGN KEY (recruiter_id) REFERENCES recruiter (id)');
+        $this->addSql('CREATE INDEX IDX_288A3A4E44F779A2 ON job_offer (consultant_id)');
+        $this->addSql('CREATE INDEX IDX_288A3A4E156BE243 ON job_offer (recruiter_id)');
+    }
+
+    public function down(Schema $schema): void
+    {
+        // this down() migration is auto-generated, please modify it to your needs
+        $this->addSql('DROP TABLE job_offer_candidate');
+        $this->addSql('ALTER TABLE job_offer DROP FOREIGN KEY FK_288A3A4E44F779A2');
+        $this->addSql('ALTER TABLE job_offer DROP FOREIGN KEY FK_288A3A4E156BE243');
+        $this->addSql('DROP INDEX IDX_288A3A4E44F779A2 ON job_offer');
+        $this->addSql('DROP INDEX IDX_288A3A4E156BE243 ON job_offer');
+        $this->addSql('ALTER TABLE job_offer DROP consultant_id, DROP recruiter_id');
+    }
+}
