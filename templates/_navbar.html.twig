@@ -1,6 +1,10 @@
 <nav>
     <div class="navbar-title">
         <a href="{{ path('app_home') }}">TRT Conseil</a>
+        {% if app.user %}
+            , bonjour {{app.user.firstname}}.
+        {% endif %}
+    
     </div>
 
     <div>
