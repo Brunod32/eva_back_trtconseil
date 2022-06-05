@@ -4,6 +4,77 @@
     box-sizing: border-box;
 }
 
-body {
-    height: 100%;
+/* navbar */
+nav {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 10px 35px -2px #252525;
+    align-items: center;
+    padding-bottom: 0;
+}
+
+.navbar-title {
+    margin-left: 2rem;
+}
+
+ul {
+    display: flex;
+    margin-right: 2rem;
+}
+
+li {
+    list-style-type: none;
+    padding-right: 2rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+@media screen and (max-width: 1030px) {
+    nav {
+        height: 150px;
+        display: block;
+    }
+
+    .navbar-title {
+        margin-left: 2rem;
+    }
+
+    ul {
+        display: block;
+        padding-left: 0;
+    }
+
+    li {
+        margin-left: 2rem;
+
+    }
+}
+
+/* Homepage */
+.homepage {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+}
+
+.homepage__description {
+    font-size: 3rem;
+    /*border: 3px solid black;*/
+    max-width: 20rem;
+    border-radius: 25px;
+}
+
+.homepage__description::before {
+    content: "«";
+}
+.homepage__description::after {
+    content: "»";
+}
+
+.homepage__img {
+    height:500px;
+    width:auto;
 }
