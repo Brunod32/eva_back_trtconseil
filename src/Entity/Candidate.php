@@ -37,7 +37,7 @@ class Candidate implements UserInterface, PasswordAuthenticatedUserInterface
     private string $cv;
 
     #[ORM\Column(type: 'boolean')]
-    private bool $isValid;
+    private bool $isValid = false;
 
     #[ORM\ManyToMany(targetEntity: JobOffer::class, mappedBy: 'candidate')]
     private Collection $jobOffers;

@@ -35,8 +35,8 @@
                     {# <td>{{ consultant.roles ? consultant.roles|json_encode : '' }}</td>
                     <td>{{ consultant.password }}</td> #}
                     <td>
-                        <a href="{{ path('app_consultant_show', {'id': consultant.id}) }}">Voir</a>
-                        <a href="{{ path('app_consultant_edit', {'id': consultant.id}) }}">Modifier</a>
+                        <a href="{{ path('app_create_consultant_show', {'id': consultant.id}) }}">Voir</a>
+                        <a href="{{ path('app_create_consultant_edit', {'id': consultant.id}) }}">Modifier</a>
                     </td>
                 </tr>
             {% else %}
@@ -49,6 +49,6 @@
     </div>
 
     <div class="m-5">
-        <a href="{{ path('app_consultant_new') }}" class="btn btn-outline-primary">Créer un nouveau consultant</a>
+        <a href="{{ path('app_create_consultant_new') }}" class="btn btn-outline-primary">Créer un nouveau consultant</a>
     </div>
 {% endblock %}

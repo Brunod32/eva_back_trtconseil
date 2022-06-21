@@ -13,13 +13,13 @@
                 <a href="{{ path('app_administrator') }}">Administrateurs</a>
             </li>
             <li>
-                <a href="#">Recruteurs</a>
+                <a href="{{ path('app_recruiter') }}">Recruteurs</a>
             </li>
             <li>
-                <a href="#">Candidats</a>
+                <a href="{{ path('app_candidate') }}">Candidats</a>
             </li>
             <li>
-                <a href="#">Consultants</a>
+                <a href="{{ path('app_consultant_workingpage') }}">Consultants</a>
             </li>
             {% if app.user %}
                 <li class="nav-item">

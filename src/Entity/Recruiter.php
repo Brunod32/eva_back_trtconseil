@@ -18,6 +18,12 @@ class Recruiter implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'integer')]
     private int $id;
 
+    #[ORM\Column(type: 'string', length: 30, nullable: true)]
+    private string $firstname;
+
+    #[ORM\Column(type: 'string', length: 30, nullable: true)]
+    private string  $lastname;
+
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     private string $email;
 
@@ -34,7 +40,7 @@ class Recruiter implements UserInterface, PasswordAuthenticatedUserInterface
     private string $companyAddress;
 
     #[ORM\Column(type: 'boolean')]
-    private bool $isValid;
+    private bool $isValid = false;
 
     #[ORM\OneToMany(mappedBy: 'recruiter', targetEntity: JobOffer::class, orphanRemoval: true)]
     private Collection $jobOffers;
@@ -176,6 +182,30 @@ class Recruiter implements UserInterface, PasswordAuthenticatedUserInterface
                 $jobOffer->setRecruiter(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(?string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(?string $lastname): self
+    {
+        $this->lastname = $lastname;
 
         return $this;
     }
