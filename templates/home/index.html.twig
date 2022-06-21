@@ -5,10 +5,18 @@
 {% block body %}
     {{ include('_navbar.html.twig') }}
 
-    <div class="container homepage">
+    {# Alert message after registration #}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success text-center mt-5">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="container homepage main">
         <p class="homepage__description">Favoriser la rencontre des talents</p>
         <img class="homepage__img" src="{{ asset('/img/job.jpg') }}" alt="Poignée de mains">
     </div>
 
-{#    {{ include('_footer.html.twig') }}#}
+    
+    {{ include('_footer.html.twig') }}
 {% endblock %}

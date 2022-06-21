@@ -67,6 +67,11 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
 
+            $this->addFlash(
+                'success',
+                'Vous avez bien été enregisté. Un consultant doit tout fois valider votre inscription avant que vous puissez vous connectez.'
+            );
+
             return $this->redirectToRoute('app_home');
         }
 
@@ -96,6 +101,11 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
 
+            $this->addFlash(
+                'success',
+                'Vous avez bien été enregisté. Un consultant doit tout fois valider votre inscription avant que vous puissez vous connectez.'
+            );
+            
             return $this->redirectToRoute('app_home');
         }
 

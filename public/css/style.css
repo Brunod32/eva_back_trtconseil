@@ -79,3 +79,18 @@ a {
     height:500px;
     width:auto;
 }
+
+/* footer */
+html {
+    position: relative;
+    min-height: 100%
+}
+
+.footer {
+    background-color: lightgrey;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    padding: 20px;
+}
