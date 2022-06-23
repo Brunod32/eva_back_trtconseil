@@ -2,5 +2,4 @@
 
 ## Local usage
 
-To clone the project use `git clone `
-To open the project in your navigator, you need a local server like XAMPP. You can use too Symfony CLI.
+To install this project, you can clone the repository with the git clone command `git clone ` then do `composer install` to get all the required dependencies. You need XAMPP, WAMP, LAMP or use the symfony serve (by doing symfony serve in a terminal) to transform your machine as a server.
