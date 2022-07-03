@@ -26,7 +26,7 @@ class JobOffer
     private string $description;
 
     #[ORM\Column(type: 'boolean')]
-    private bool $isValid;
+    private bool $isValid = false;
 
     #[ORM\ManyToOne(targetEntity: Consultant::class, inversedBy: 'jobOffers')]
     #[ORM\JoinColumn(nullable: false)]

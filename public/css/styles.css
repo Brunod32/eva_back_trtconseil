@@ -94,3 +94,8 @@ html {
     white-space: nowrap;
     padding: 20px;
 }
+
+/* Candidate page */
+.userInfo {
+    border: 1px solid black;
+}
