@@ -10,11 +10,16 @@
 
     <section class="userInfo mt-5 mb-5">
         <h2>Mes informations</h2>
-        <p>id: {{ app.user.id}}</p>
-        <p>Nom: {{ app.user.firstname}}</p>
-        <p>Prénom: {{ app.user.lastname}}</p>
-        <p>Mon email: {{ app.user.email}}</p>
-        <a href="{{ path('app_candidate_edit', {'id': app.user.id}) }}">Modifier/Ajouter des informations</a>
+        <p>Nom: {{ app.user.firstname }}</p>
+        <p>Prénom: {{ app.user.lastname }}</p>
+        <p>Mon email: {{ app.user.email }}</p>
+        <p>Métier: </p>
+        {% if app.user.isValid == false %}
+            <p class="invalidMsg">Votre compte n'a pas encore été validé</p>
+        {% elseif app.user.isValid == true %}
+            <p class="validMsg">Votre compte validé</p>
+            <a href="{{ path('app_candidate_edit', {'id': app.user.id}) }}">Modifier/Ajouter des informations</a>
+        {% endif %}
     </section>
 </div>
 {% endblock %}

@@ -96,6 +96,12 @@ html {
 }
 
 /* Candidate page */
-.userInfo {
-    border: 1px solid black;
+.invalidMsg {
+    color: red;
+    font-weight: bolder;
+}
+
+.validMsg {
+    color: green;
+    /* font-weight: bolder; */
 }
