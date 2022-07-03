@@ -42,6 +42,9 @@ class Candidate implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: JobOffer::class, mappedBy: 'candidate')]
     private Collection $jobOffers;
 
+    #[ORM\Column(type: 'string', length: 50)]
+    private $job;
+
     #[Pure] public function __construct()
     {
         $this->jobOffers = new ArrayCollection();
@@ -188,6 +191,18 @@ class Candidate implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->jobOffers->removeElement($jobOffer)) {
             $jobOffer->removeCandidate($this);
         }
+
+        return $this;
+    }
+
+    public function getJob(): ?string
+    {
+        return $this->job;
+    }
+
+    public function setJob(string $job): self
+    {
+        $this->job = $job;
 
         return $this;
     }

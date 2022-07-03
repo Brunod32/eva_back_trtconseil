@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Candidate;
-use App\Repository\CandidateRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,11 +24,11 @@ class ConsultantWorkingpageController extends AbstractController
         $candidatesLists = $repository->findAll();
         foreach($candidatesLists as $candidatesList)
         {
-        // echo "Nom du candidat :" .$candidatesList->getlastname();
-        // echo "Prénom du candidat :" .$candidatesList->getfirstname();
+        
         $lastname = $candidatesList->getlastname();
         $firstname = $candidatesList->getfirstname();
         $email = $candidatesList->getemail();
+        $job = $candidatesList->getjob();
         $status = $candidatesList->getisValid();
         }
 
@@ -37,9 +36,10 @@ class ConsultantWorkingpageController extends AbstractController
             'Nom' => $lastname,
             'Prénom' => $firstname,
             'Email' => $email,
+            'Job' => $job,
             'Status' => $status
         ]);
     }
 
-    
+
 }

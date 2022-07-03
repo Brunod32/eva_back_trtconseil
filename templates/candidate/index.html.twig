@@ -10,10 +10,10 @@
 
     <section class="userInfo mt-5 mb-5">
         <h2>Mes informations</h2>
-        <p>Nom: {{ app.user.firstname }}</p>
-        <p>Prénom: {{ app.user.lastname }}</p>
+        <p>Nom: {{ app.user.firstname | capitalize }}</p>
+        <p>Prénom: {{ app.user.lastname | capitalize }}</p>
         <p>Mon email: {{ app.user.email }}</p>
-        <p>Métier: </p>
+        <p>Métier: {{ app.user.job | capitalize }}</p>
         {% if app.user.isValid == false %}
             <p class="invalidMsg">Votre compte n'a pas encore été validé</p>
         {% elseif app.user.isValid == true %}

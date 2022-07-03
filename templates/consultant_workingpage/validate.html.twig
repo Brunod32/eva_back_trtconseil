@@ -7,17 +7,24 @@
 
 <div class="container">
     <h1 class="text-center mt-5">Mon espace consultant</h1>
-
     
+    <button class="btn btn-outline-primary">
+        <a href="{{ path('app_consultant_workingpage')}}" title="Accueil espace Consultant">
+            <i class="fa-solid fa-angle-left"></i>
+        </a>
+    </button>
+
     <section class="mt-5">
         <h2>Liste des comptes candidats à valider</h2>
         
-        <section class="my-3 mx-5">	
+        <div class="my-3 mx-5">	
             Nom du candidat : {{ Nom }}
             <br>
             Prénom du candidat : {{ Prénom }}
             <br>
             Email du candidat : {{ Email }}
+            <br>
+            Métier : {{ Job }}
             <br>
             {% if Status == false %}
                 Status du candidat : <span class="invalidMsg">A valider</span>
@@ -26,7 +33,7 @@
             {% endif %}
             <br>
             <button class="btn btn-outline-primary mt-2">Valider le compte</button>
-        </section>
+        </div>
     </section>
     
 </div>
