@@ -54,7 +54,7 @@ class ConsultantWorkingpageController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('app_consultant_workingpage_validate', [
-            'id' => $id
+            'Id' => $id
         ]);
     }
 

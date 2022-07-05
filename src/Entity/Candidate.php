@@ -33,7 +33,7 @@ class Candidate implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 30, nullable: true)]
     private string  $lastname;
 
-    #[ORM\Column(type: 'blob', nullable: true)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private string $cv;
 
     #[ORM\Column(type: 'boolean')]
