@@ -13,30 +13,21 @@
             <i class="fa-solid fa-angle-left"></i>
         </a>
     </button>
+
     <section class="mt-5">
         <h2>Liste des comptes candidat à valider</h2>
+        
         <div class="my-3 mx-5">	
-            Id : {{ Id }}
-            <br>
-            Nom : {{ Nom }}
-            <br>
-            Prénom : {{ Prénom }}
-            <br>
-            Email : {{ Email }}
-            <br>
-            Métier : {{ Job }}
-            <br>
+            
             {% if Status == false %}
                 Status : <span class="invalidMsg">A valider</span>
             {% else %}
                 Status : <span class="validMsg">Validé</span>
             {% endif %}
             <br>
-
-            <button class="btn btn-outline-primary mt-2">
-                <a href="{{ path('app_consultant_workingpage_validation', {'id': Id }) }}">Valider le compte</a>
-            </button>
+     
         </div>
     </section>
+    
 </div>
 {% endblock %}

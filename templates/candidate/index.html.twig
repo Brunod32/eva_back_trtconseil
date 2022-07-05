@@ -17,7 +17,7 @@
         {% if app.user.isValid == false %}
             <p class="invalidMsg">Votre compte n'a pas encore été validé</p>
         {% elseif app.user.isValid == true %}
-            <p class="validMsg">Votre compte validé</p>
+            <p class="validMsg">Votre compte est validé</p>
             <a href="{{ path('app_candidate_edit', {'id': app.user.id}) }}">Modifier/Ajouter des informations</a>
         {% endif %}
     </section>
