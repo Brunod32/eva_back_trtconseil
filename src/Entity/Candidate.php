@@ -34,7 +34,7 @@ class Candidate implements UserInterface, PasswordAuthenticatedUserInterface
     private string  $lastname;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private string $cv;
+    private ?string $cv;
 
     #[ORM\Column(type: 'boolean')]
     private bool $isValid = false;
@@ -42,7 +42,7 @@ class Candidate implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: JobOffer::class, mappedBy: 'candidate')]
     private Collection $jobOffers;
 
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: 'string', length: 50, nullable: true)]
     private $job;
 
     #[Pure] public function __construct()
