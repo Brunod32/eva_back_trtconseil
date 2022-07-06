@@ -6,8 +6,13 @@
         label: 'Nom'
     }) }}
     {{ form_row(form.email) }}
-    {{ form_row(form.companyName,
-        label: 'Nom de l\'entreprise') }}
+    {{ form_row(form.companyName, {
+        label: 'Nom de la société'
+    }) }}
+    {{ form_row(form.companyAddress, {
+        label: 'Adresse de la société'
+    }) }}
+    
     {# {{ form_row(form.password, {
         label: 'Mot de passe'
     }) }} #}

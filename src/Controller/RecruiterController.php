@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Recruiter;
+use App\Form\RecruiterType;
 use App\Repository\RecruiterRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,20 +19,20 @@ class RecruiterController extends AbstractController
         return $this->render('recruiter/index.html.twig');
     }
 
-    #[Route('/{id}/edit', name: 'app_create_consultant_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'app_recruiter_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Recruiter $recruiter, RecruiterRepository $recruiterRepository): Response
     {
-        $form = $this->createForm(ConsultantType::class, $recruiter);
+        $form = $this->createForm(RecruiterType::class, $recruiter);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $recruiterRepository->add($recruiter, true);
 
-            return $this->redirectToRoute('app_create_consultant_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_recruiter', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('consultant/edit.html.twig', [
-            'consultant' => $recruiter,
+        return $this->renderForm('recruiter/edit.html.twig', [
+            'recruiter' => $recruiter,
             'form' => $form,
         ]);
     }
