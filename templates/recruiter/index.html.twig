@@ -6,6 +6,21 @@
 {{ include('_navbar.html.twig') }}
 
 <div class="container">
-    <h1 class="text-center mt-5">Mon espace recruteur</h1>
+    <h1 class="text-center mt-5">{{ app.user.firstname}}, mon espace recruteur</h1>
+
+    <section class="userInfo mt-5 mb-5">
+        <h2>Mes informations</h2>
+        <p>Nom: {{ app.user.firstname | capitalize }}</p>
+        <p>Prénom: {{ app.user.lastname | capitalize }}</p>
+        <p>Mon email: {{ app.user.email }}</p>
+        {# <p>Nom de l'entreprise: {{ app.user.companyName | capitalize }}</p>
+        <p>PAdresse de l'entreprise: {{ app.user.companyAdress }}</p> #}
+        {% if app.user.isValid == false %}
+            <p class="invalidMsg">Votre compte n'a pas encore été validé</p>
+        {% elseif app.user.isValid == true %}
+            <p class="validMsg">Votre compte est validé</p>
+            <a href="{{ path('app_candidate_edit', {'id': app.user.id}) }}">Modifier/Ajouter des informations</a>
+        {% endif %}
+    </section>
 </div>
 {% endblock %}

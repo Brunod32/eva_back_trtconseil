@@ -13,8 +13,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Filesystem\Filesystem;
-
 
 #[Route('/candidate')]
 class CandidateController extends AbstractController
@@ -64,7 +62,6 @@ class CandidateController extends AbstractController
                 $entityManager->flush();
             }
             
-            // $candidateRepository->add($candidate, true);
 
             return $this->redirectToRoute('app_candidate', [], Response::HTTP_SEE_OTHER);
         }
@@ -73,20 +70,5 @@ class CandidateController extends AbstractController
             'candidate' => $candidate,
             'form' => $form,
         ]);
-    }
-
-    #[Route('/{id}', name: 'app_candidate_delete', methods: ['POST'])]
-    public function delete(Request $request, Candidate $candidate, CandidateRepository $candidateRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$candidate->getId(), $request->request->get('_token'))) {
-            $filename = $candidate->getCv();
-            $candidateRepository->remove($candidate, true);
-
-            // Supprimer la photo du dossier upload du serveur
-            $fs = new Filesystem();
-            $fs->remove($this->getParameter('cv_directory').'/'.$filename);
-        }
-
-        return $this->redirectToRoute('app_candidate', [], Response::HTTP_SEE_OTHER);
     }
 }

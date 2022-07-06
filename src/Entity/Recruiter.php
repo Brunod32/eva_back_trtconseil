@@ -144,7 +144,7 @@ class Recruiter implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function isIsValid(): ?bool
+    public function getIsValid(): ?bool
     {
         return $this->isValid;
     }
