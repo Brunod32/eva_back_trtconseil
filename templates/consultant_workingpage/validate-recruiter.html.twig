@@ -6,7 +6,7 @@
 {{ include('_navbar.html.twig') }}
 
 <div class="container">
-    <h1 class="text-center mt-5">Mon espace consultant</h1>
+    <h1 class="text-center mt-5">Liste des comptes recruteurs</h1>
     
     <button class="btn btn-outline-primary">
         <a href="{{ path('app_consultant_workingpage')}}" title="Accueil espace Consultant">
@@ -14,26 +14,34 @@
         </a>
     </button>
     <section class="mt-5">
-        <h2>Liste des comptes recruteur à valider</h2>
+        {# <h2>Liste des comptes recruteur</h2> #}
         <div class="my-3 mx-5">	
-            Id : {{ Id }}
+        {% for recruiter in recruiters %}
+            {# Id : {{ recruiter.Id }}
+            <br> #}
+            Nom : {{ recruiter.lastname | capitalize }}
             <br>
-            Nom : {{ Nom }}
+            Prénom : {{ recruiter.firstname | capitalize }}
             <br>
-            Prénom : {{ Prénom }}
+            Email : {{ recruiter.email }}
             <br>
-            Email : {{ Email }}
-            <br>
-            {% if Status == false %}
-                Status : <span class="invalidMsg">A valider</span>
+
+            {# Ajouter infos entreprise #}
+
+
+
+            {% if recruiter.isValid == false %}
+                Statut : <span class="invalidMsg">A valider</span>
             {% else %}
-                Status : <span class="validMsg">Validé</span>
+                Statut : <span class="validMsg">Validé</span>
             {% endif %}
             <br>
 
-            <button class="btn btn-outline-primary mt-2">
-                <a href="{{ path('app_consultant_workingpage_validation_recruiter', {'id': Id }) }}">Valider le compte</a>
+            <button class="btn btn-outline-primary mt-2 mb-5">
+                <a href="{{ path('app_consultant_workingpage_validation_recruiter', {'id': recruiter.Id }) }}">Valider le compte</a>
             </button>
+            <br>
+        {% endfor %}
         </div>
     </section>
 </div>
