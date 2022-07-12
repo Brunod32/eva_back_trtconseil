@@ -39,6 +39,12 @@ class JobOffer
     #[ORM\ManyToMany(targetEntity: Candidate::class, inversedBy: 'jobOffers')]
     private ArrayCollection $candidate;
 
+    #[ORM\Column(type: 'integer')]
+    private $salary;
+
+    #[ORM\Column(type: 'integer')]
+    private $schedule;
+
     #[Pure] public function __construct()
     {
         $this->candidate = new ArrayCollection();
@@ -141,6 +147,30 @@ class JobOffer
     public function removeCandidate(Candidate $candidate): self
     {
         $this->candidate->removeElement($candidate);
+
+        return $this;
+    }
+
+    public function getSalary(): ?int
+    {
+        return $this->salary;
+    }
+
+    public function setSalary(int $salary): self
+    {
+        $this->salary = $salary;
+
+        return $this;
+    }
+
+    public function getSchedule(): ?int
+    {
+        return $this->schedule;
+    }
+
+    public function setSchedule(int $schedule): self
+    {
+        $this->schedule = $schedule;
 
         return $this;
     }
