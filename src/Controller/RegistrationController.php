@@ -69,7 +69,7 @@ class RegistrationController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Vous avez bien été enregisté. Un consultant doit tout fois valider votre inscription avant que vous puissez vous connectez.'
+                'Vous avez bien été enregisté. Un consultant doit valider votre inscription avant que vous ne puissez utiliser le site.'
             );
 
             return $this->redirectToRoute('app_home');
@@ -103,13 +103,17 @@ class RegistrationController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Vous avez bien été enregisté. Un consultant doit tout fois valider votre inscription avant que vous puissez vous connectez.'
+                'Vous avez bien été enregisté. Un consultant doit valider votre inscription avant que vous ne puissez utiliser le site.'
             );
             
             return $this->redirectToRoute('app_home');
         }
 
-        return $this->render('registration/registerRecruiter.html.twig', [
+        // return $this->render('registration/registerRecruiter.html.twig', [
+        //     'registrationForm' => $form->createView(),
+        // ]);
+
+        return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }

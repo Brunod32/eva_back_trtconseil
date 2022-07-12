@@ -35,8 +35,8 @@ class RegistrationFormRecruiterType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('companyName')
-            ->add('companyAddress')
+            // ->add('companyName')
+            // ->add('companyAddress')
         ;
     }
 

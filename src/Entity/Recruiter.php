@@ -34,10 +34,10 @@ class Recruiter implements UserInterface, PasswordAuthenticatedUserInterface
     private string $password;
 
     #[ORM\Column(type: 'string', length: 30, nullable: true)]
-    private string $companyName;
+    private ?string $companyName = null;
 
     #[ORM\Column(type: 'string', length: 100, nullable: true)]
-    private string $companyAddress;
+    private ?string $companyAddress = null;
 
     #[ORM\Column(type: 'boolean')]
     private bool $isValid = false;

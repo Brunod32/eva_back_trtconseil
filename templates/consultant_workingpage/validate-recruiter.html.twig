@@ -25,10 +25,10 @@
             <br>
             Email : {{ recruiter.email }}
             <br>
-
-            {# Ajouter infos entreprise #}
-
-
+            Nom de l'entreprise : {{ recruiter.companyName | capitalize  }}
+            <br>
+            Adresse de l'entreprise : {{ recruiter.companyAddress | capitalize  }}
+            <br>
 
             {% if recruiter.isValid == false %}
                 Statut : <span class="invalidMsg">A valider</span>
