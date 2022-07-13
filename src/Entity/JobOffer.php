@@ -26,24 +26,24 @@ class JobOffer
     private string $description;
 
     #[ORM\Column(type: 'boolean')]
-    private bool $isValid = false;
+    private bool $isValid = true;
 
     #[ORM\ManyToOne(targetEntity: Consultant::class, inversedBy: 'jobOffers')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Consultant $consultant;
 
     #[ORM\ManyToOne(targetEntity: Recruiter::class, inversedBy: 'jobOffers')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Recruiter $recruiter;
 
     #[ORM\ManyToMany(targetEntity: Candidate::class, inversedBy: 'jobOffers')]
-    private ArrayCollection $candidate;
+    private Collection $candidate;
 
     #[ORM\Column(type: 'integer')]
-    private $salary;
+    private int $salary;
 
     #[ORM\Column(type: 'integer')]
-    private $schedule;
+    private int $schedule;
 
     #[Pure] public function __construct()
     {
