@@ -20,7 +20,7 @@ class JobOfferController extends AbstractController
         ]);
     }
 
-    #[Route('consultant/job/offer/new', name: 'app_job_offer_new', methods: ['GET', 'POST'])]
+    #[Route('/recruiter/job/offer/new', name: 'app_job_offer_new', methods: ['GET', 'POST'])]
     public function new(Request $request, JobOfferRepository $jobOfferRepository): Response
     {
         $jobOffer = new JobOffer();

@@ -13,32 +13,30 @@
             <i class="fa-solid fa-angle-left"></i>
         </a>
     </button>
-    <section class="mt-5">
-        {# <h2>Liste des annonces à valider</h2> #}
-        <div class="my-3 mx-5">	
+   <section class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
         {% for joboffer in joboffers %}
-            {# Id : {{ candidate.Id }}
-            <br> #}
-            Nom de l'offre : {{ joboffer.jobTitle | capitalize}}
-            <br>
-            Localisation de l'emploi : {{ joboffer.workplace | capitalize}}
-            <br>
-            Description de l'offre : {{ joboffer.description }}
-            <br>
-            Salaire : {{ joboffer.salary }} €/mois
-            <br>
-            Temps de travail: {{ joboffer.schedule }} heures/semaine
-            <br>
-            {% if joboffer.isValid == false %}
-                Statut : <span class="invalidMsg">A valider</span>
-            {% else %}
-                Statut : <span class="validMsg">Validé</span>
-            {% endif %}
-            <br>
-            <button class="btn btn-outline-primary mt-2 mb-5">
-                <a href="{{ path('app_consultant_workingpage_validation_joboffer', {'id': joboffer.Id }) }}">Valider l'annonce</a>
-            </button>
-            <br>
+            <div class="container d-flex justify-content-center">
+                <div class="card mb-3" style="width: 20rem;">
+                    <h5 class="card-header text-center">{{ joboffer.Id }} - {{ joboffer.jobTitle | capitalize}}</h5>
+                    <div class="card-body">
+                        <p class="card-text">{{ joboffer.description | capitalize}}</p>
+                        <p class="card-text">{{ joboffer.salary }} €/mois</p>
+                        <p class="card-text">{{ joboffer.schedule }} heures/semaine</p>
+                        <p class="card-subtitle mb-2 text-muted">{{ joboffer.workplace | capitalize}}</p>
+                        {% if joboffer.isValid == false %}
+                            <p class="invalidMsg">Annonce non validée</p>
+                        {% elseif joboffer.isValid == true %}
+                            <p class="validMsg">Annonce validée</p>
+                        {% endif %}
+                    </div>
+                    <div class="card-footer d-flex justify-content-around">
+                        <button class="btn btn-outline-primary my-2">
+                            <a href="{{ path('app_consultant_workingpage_validation_joboffer', {'id': joboffer.Id }) }}">Valider l'annonce</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
         </div>
     </section>

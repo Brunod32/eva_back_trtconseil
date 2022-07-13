@@ -25,5 +25,10 @@
             <a href="{{ path('app_candidate_edit', {'id': app.user.id}) }}">Modifier/Ajouter des informations</a>
         {% endif %}
     </section>
+
+    <section>
+        <h2>Les offres d'emploi</h2>
+        <a href="{{ path('app_job_offer_index') }}">Consulter les offres</a>
+    </section>
 </div>
 {% endblock %}
