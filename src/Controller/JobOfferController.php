@@ -10,18 +10,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/job/offer')]
 class JobOfferController extends AbstractController
 {
-    #[Route('/', name: 'app_job_offer_index', methods: ['GET'])]
+    #[Route('/job/offer/', name: 'app_job_offer_index', methods: ['GET'])]
     public function index(JobOfferRepository $jobOfferRepository): Response
-    {
+    {   
         return $this->render('job_offer/index.html.twig', [
             'job_offers' => $jobOfferRepository->findAll(),
         ]);
     }
 
-    #[Route('/new', name: 'app_job_offer_new', methods: ['GET', 'POST'])]
+    #[Route('consultant/job/offer/new', name: 'app_job_offer_new', methods: ['GET', 'POST'])]
     public function new(Request $request, JobOfferRepository $jobOfferRepository): Response
     {
         $jobOffer = new JobOffer();
@@ -30,6 +29,11 @@ class JobOfferController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $jobOfferRepository->add($jobOffer, true);
+
+            $this->addFlash(
+                'success',
+                'Votre annonce a bien été enregistée. Un consultant doit la valider avant sa publication.'
+            );
 
             return $this->redirectToRoute('app_job_offer_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -40,7 +44,7 @@ class JobOfferController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_job_offer_show', methods: ['GET'])]
+    #[Route('/job/offer/{id}', name: 'app_job_offer_show', methods: ['GET'])]
     public function show(JobOffer $jobOffer): Response
     {
         return $this->render('job_offer/show.html.twig', [
@@ -66,7 +70,7 @@ class JobOfferController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_job_offer_delete', methods: ['POST'])]
+    #[Route('/job/offer/{id}', name: 'app_job_offer_delete', methods: ['POST'])]
     public function delete(Request $request, JobOffer $jobOffer, JobOfferRepository $jobOfferRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$jobOffer->getId(), $request->request->get('_token'))) {

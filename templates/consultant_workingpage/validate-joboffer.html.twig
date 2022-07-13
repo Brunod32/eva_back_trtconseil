@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consultant | Validation{% endblock %}
+
+{% block body %}
+{{ include('_navbar.html.twig') }}
+
+<div class="container">
+    <h1 class="text-center mt-5">Liste des annonces</h1>
+    
+    <button class="btn btn-outline-primary">
+        <a href="{{ path('app_consultant_workingpage')}}" title="Accueil espace Consultant">
+            <i class="fa-solid fa-angle-left"></i>
+        </a>
+    </button>
+    <section class="mt-5">
+        {# <h2>Liste des annonces à valider</h2> #}
+        <div class="my-3 mx-5">	
+        {% for joboffer in joboffers %}
+            {# Id : {{ candidate.Id }}
+            <br> #}
+            Nom de l'offre : {{ joboffer.jobTitle | capitalize}}
+            <br>
+            Localisation de l'emploi : {{ joboffer.workplace | capitalize}}
+            <br>
+            Description de l'offre : {{ joboffer.description }}
+            <br>
+            Salaire : {{ joboffer.salary }} €/mois
+            <br>
+            Temps de travail: {{ joboffer.schedule }} heures/semaine
+            <br>
+            {% if joboffer.isValid == false %}
+                Statut : <span class="invalidMsg">A valider</span>
+            {% else %}
+                Statut : <span class="validMsg">Validé</span>
+            {% endif %}
+            <br>
+            <button class="btn btn-outline-primary mt-2 mb-5">
+                <a href="{{ path('app_consultant_workingpage_validation_joboffer', {'id': joboffer.Id }) }}">Valider l'annonce</a>
+            </button>
+            <br>
+        {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

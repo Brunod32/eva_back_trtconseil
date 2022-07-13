@@ -14,12 +14,12 @@
             <p class="invalidMsg">Votre compte n'a pas encore été validé</p>
         {% elseif app.user.isValid == true %}
             <p class="validMsg">Votre compte a été validé</p>
-        {% endif %}
         <p>Nom: {{ app.user.firstname | capitalize }}</p>
         <p>Prénom: {{ app.user.lastname | capitalize }}</p>
         <p>Mon email: {{ app.user.email }}</p>
         <p>Métier: {{ app.user.job | capitalize }}</p>
         <p>CV: <a href="{{ asset('uploads/' ~ app.user.cv) }}">Voir le CV</a></p>
+        {% endif %}
         
         {% if app.user.isValid == true %}
             <a href="{{ path('app_candidate_edit', {'id': app.user.id}) }}">Modifier/Ajouter des informations</a>
