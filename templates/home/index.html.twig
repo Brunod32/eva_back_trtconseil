@@ -12,11 +12,16 @@
         </div>
     {% endfor %}
 
-    <div class="container homepage main">
-        <p class="homepage__description">Favoriser la rencontre des talents</p>
+    <section class="container homepage main mb-5">
+        <h1 class="homepage__description">Favoriser la rencontre des talents</h1>     
         <img class="homepage__img" src="{{ asset('/img/job.jpg') }}" alt="Poignée de mains">
-    </div>
+    </section>
 
-    
-    {{ include('_footer.html.twig') }}
+    <section class="container mt-5">
+        <h2 class="mx-5">Les offres d'emploi<h2>
+            {# <span class="mx-5"><a href="{{ path('app_job_offer_index') }}">Consulter</a> les offres d'emploi</span> #}
+    </section>
+
+{#     
+    {{ include('_footer.html.twig') }} #}
 {% endblock %}
