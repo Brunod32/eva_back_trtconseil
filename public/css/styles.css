@@ -33,6 +33,26 @@ a {
     text-decoration: none;
 }
 
+/* footer */
+html {
+    /* To put the footer at the bottom of the page */
+    min-height: calc(100vh - 100px);
+    position: relative;
+    margin: 0 auto;
+    max-width: 1280;
+}
+
+.footer {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    white-space: nowrap;
+    bottom: 0;
+    left:0;
+    right:0;
+    padding-top: 15px;
+}
+
 @media screen and (max-width: 1030px) {
     nav {
         height: 150px;
