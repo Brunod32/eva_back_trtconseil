@@ -11,16 +11,16 @@ class Candidacy
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
-    private $isValid;
+    private bool $isValid = false;
 
     #[ORM\ManyToOne(targetEntity: Candidate::class, inversedBy: 'candidacies')]
-    private $candidate;
+    private ?Candidate $candidate;
 
     #[ORM\ManyToOne(targetEntity: JobOffer::class, inversedBy: 'candidacies')]
-    private $jobOffer;
+    private ?JobOffer $jobOffer;
 
     public function getId(): ?int
     {

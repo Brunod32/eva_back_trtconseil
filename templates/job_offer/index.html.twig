@@ -41,11 +41,11 @@
                             </div>
                             <div class="card-footer d-flex justify-content-around">
                             {% if 'ROLE_CANDIDATE' in app.user.roles %}
-                                <a href="{{ path('app_job_offer_apply', {'idCandidate': app.user.id, 'idOffer': job_offer.id }) }}">Postuler</a>
-                                <pre>
+                                <a href="{{ path('app_candidacy', {'idCandidate': app.user.Id, 'idJobOffer': job_offer.id }) }}">Postuler</a>
+                                {# <pre>
                                     id annonce: {{ dump (job_offer.id) }}
                                     id user : {{ dump (app.user.id) }}
-                                </pre>
+                                </pre> #}
                             {% elseif 'ROLE_RECRUITER' in app.user.roles %}
                                 <a href="{{ path('app_job_offer_show', {'id': job_offer.id}) }}">Voir</a>
                                 <a href="{{ path('app_job_offer_edit', {'id': job_offer.id}) }}">Modifier</a>
