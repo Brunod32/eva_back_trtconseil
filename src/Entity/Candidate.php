@@ -39,15 +39,19 @@ class Candidate implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private bool $isValid = false;
 
-    #[ORM\ManyToMany(targetEntity: JobOffer::class, mappedBy: 'candidate')]
-    private Collection $jobOffers;
+    // #[ORM\ManyToMany(targetEntity: JobOffer::class, mappedBy: 'candidate')]
+    // private Collection $jobOffers;
 
     #[ORM\Column(type: 'string', length: 50, nullable: true)]
     private $job;
 
+    #[ORM\OneToMany(mappedBy: 'candidate', targetEntity: Candidacy::class)]
+    private $candidacies;
+
     #[Pure] public function __construct()
     {
-        $this->jobOffers = new ArrayCollection();
+        // $this->jobOffers = new ArrayCollection();
+        $this->candidacies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -168,32 +172,32 @@ class Candidate implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, JobOffer>
-     */
-    public function getJobOffers(): Collection
-    {
-        return $this->jobOffers;
-    }
+    // /**
+    //  * @return Collection<int, JobOffer>
+    //  */
+    // public function getJobOffers(): Collection
+    // {
+    //     return $this->jobOffers;
+    // }
 
-    public function addJobOffer(JobOffer $jobOffer): self
-    {
-        if (!$this->jobOffers->contains($jobOffer)) {
-            $this->jobOffers[] = $jobOffer;
-            $jobOffer->addCandidate($this);
-        }
+    // public function addJobOffer(JobOffer $jobOffer): self
+    // {
+    //     if (!$this->jobOffers->contains($jobOffer)) {
+    //         $this->jobOffers[] = $jobOffer;
+    //         $jobOffer->addCandidate($this);
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function removeJobOffer(JobOffer $jobOffer): self
-    {
-        if ($this->jobOffers->removeElement($jobOffer)) {
-            $jobOffer->removeCandidate($this);
-        }
+    // public function removeJobOffer(JobOffer $jobOffer): self
+    // {
+    //     if ($this->jobOffers->removeElement($jobOffer)) {
+    //         $jobOffer->removeCandidate($this);
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getJob(): ?string
     {
@@ -203,6 +207,36 @@ class Candidate implements UserInterface, PasswordAuthenticatedUserInterface
     public function setJob(string $job): self
     {
         $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Candidacy>
+     */
+    public function getCandidacies(): Collection
+    {
+        return $this->candidacies;
+    }
+
+    public function addCandidacy(Candidacy $candidacy): self
+    {
+        if (!$this->candidacies->contains($candidacy)) {
+            $this->candidacies[] = $candidacy;
+            $candidacy->setCandidate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidacy(Candidacy $candidacy): self
+    {
+        if ($this->candidacies->removeElement($candidacy)) {
+            // set the owning side to null (unless already changed)
+            if ($candidacy->getCandidate() === $this) {
+                $candidacy->setCandidate(null);
+            }
+        }
 
         return $this;
     }

@@ -36,8 +36,8 @@ class JobOffer
     #[ORM\JoinColumn(nullable: true)]
     private ?Recruiter $recruiter;
 
-    #[ORM\ManyToMany(targetEntity: Candidate::class, inversedBy: 'jobOffers')]
-    private Collection $candidate;
+    // #[ORM\ManyToMany(targetEntity: Candidate::class, inversedBy: 'jobOffers')]
+    // private Collection $candidate;
 
     #[ORM\Column(type: 'integer')]
     private int $salary;
@@ -45,9 +45,13 @@ class JobOffer
     #[ORM\Column(type: 'integer')]
     private int $schedule;
 
+    #[ORM\OneToMany(mappedBy: 'jobOffer', targetEntity: Candidacy::class)]
+    private $candidacies;
+
     #[Pure] public function __construct()
     {
         $this->candidate = new ArrayCollection();
+        $this->candidacies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -127,29 +131,29 @@ class JobOffer
         return $this;
     }
 
-    /**
-     * @return Collection<int, Candidate>
-     */
-    public function getCandidate(): Collection
-    {
-        return $this->candidate;
-    }
+    // /**
+    //  * @return Collection<int, Candidate>
+    //  */
+    // public function getCandidate(): Collection
+    // {
+    //     return $this->candidate;
+    // }
 
-    public function addCandidate(Candidate $candidate): self
-    {
-        if (!$this->candidate->contains($candidate)) {
-            $this->candidate[] = $candidate;
-        }
+    // public function addCandidate(Candidate $candidate): self
+    // {
+    //     if (!$this->candidate->contains($candidate)) {
+    //         $this->candidate[] = $candidate;
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function removeCandidate(Candidate $candidate): self
-    {
-        $this->candidate->removeElement($candidate);
+    // public function removeCandidate(Candidate $candidate): self
+    // {
+    //     $this->candidate->removeElement($candidate);
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getSalary(): ?int
     {
@@ -171,6 +175,36 @@ class JobOffer
     public function setSchedule(int $schedule): self
     {
         $this->schedule = $schedule;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Candidacy>
+     */
+    public function getCandidacies(): Collection
+    {
+        return $this->candidacies;
+    }
+
+    public function addCandidacy(Candidacy $candidacy): self
+    {
+        if (!$this->candidacies->contains($candidacy)) {
+            $this->candidacies[] = $candidacy;
+            $candidacy->setJobOffer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCandidacy(Candidacy $candidacy): self
+    {
+        if ($this->candidacies->removeElement($candidacy)) {
+            // set the owning side to null (unless already changed)
+            if ($candidacy->getJobOffer() === $this) {
+                $candidacy->setJobOffer(null);
+            }
+        }
 
         return $this;
     }
