@@ -4,11 +4,15 @@ namespace App\Controller;
 
 use App\Entity\JobOffer;
 use App\Form\JobOfferType;
+use App\Entity\Candidate;
 use App\Repository\JobOfferRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 
 class JobOfferController extends AbstractController
 {
@@ -79,4 +83,41 @@ class JobOfferController extends AbstractController
 
         return $this->redirectToRoute('app_job_offer_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    
+    #[Route('/job/offer/candidate-apply/{idCandidate}/{idOffer}', name: 'app_job_offer_apply')]
+    public function postule(): Response
+    {
+
+        // Code pour sauvegarder en BDD les candidature des candidates / offres 
+
+        
+        return $this->render('job_offer/candidateApply.html.twig');
+    }
+
+//     #[Route('/job/offer/candidate-apply/{id}/{idCandidate}', name: 'app_job_offer_apply', methods: ['GET'])]
+// //    #[ParamConverter(
+// //        'id',
+// //        class: JobOffer::class,
+// //        options: ['id' => 'id'],
+// //    )]
+//     public function candidateApply(int $id, EntityManagerInterface $entityManager, ManagerRegistry $doctrine, JobOffer $joboffer, Candidate $candidate, JobOfferRepository $jobOfferRepository): Response
+//     {
+//         // $emCandidate = $doctrine->getRepository(Candidate::class);
+//         // $candidate = $emCandidate->find($id);
+//         // $idCandidate = $candidate->getId();
+//         // $entityManager->flush();
+
+//         // $emJobOffer = $doctrine->getRepository(JobOffer::class);
+//         // $joboffer = $emJobOffer->find($id);
+//         // $joboffer->addCandidate($candidate);
+//         // $idJobOffer = $joboffer->getId();
+//         // $entityManager->flush();
+
+//         return $this->render('job_offer/candidateApply.html.twig', [
+//             // 'id' => $idJobOffer,
+//             // 'idCandidate' => $idCandidate,
+//         ]);
+//     }
+
 }

@@ -33,7 +33,7 @@ class ConsultantWorkingpageController extends AbstractController
 
 
     #[Route('/consultant/workingpagevalidation/{id}', name: 'app_consultant_workingpage_validation')]
-    public function validate(int $id, EntityManagerInterface $entityManager, ManagerRegistry $doctrine, Candidate $candidate): Response
+    public function validate(int $id, EntityManagerInterface $entityManager, ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getRepository(Candidate::class);
         $candidate = $em->find($id);
