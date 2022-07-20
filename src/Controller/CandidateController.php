@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Candidate;
 use App\Form\CandidateType;
+use App\Repository\CandidacyRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\CandidateRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -69,6 +70,14 @@ class CandidateController extends AbstractController
         return $this->renderForm('candidate/edit.html.twig', [
             'candidate' => $candidate,
             'form' => $form,
+        ]);
+    }
+
+    #[Route('/candidate-candidacies', name: 'app_candidate_candidacies')]
+    public function showCandidateCandidacies(CandidacyRepository $candidacyRepository): Response
+    {
+        return $this->render('candidate/candidate-candidacies.html.twig', [
+            'candidacies' => $candidacyRepository->findAll(),
         ]);
     }
 }

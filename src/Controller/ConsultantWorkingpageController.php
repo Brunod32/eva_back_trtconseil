@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Entity\Candidate;
 use App\Entity\Recruiter;
 use App\Entity\JobOffer;
+use App\Entity\Candidacy;
 use App\Repository\CandidateRepository;
 use App\Repository\RecruiterRepository;
 use App\Repository\JobOfferRepository;
+use App\Repository\CandidacyRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -87,6 +89,28 @@ class ConsultantWorkingpageController extends AbstractController
 
         return $this->redirectToRoute('app_consultant_workingpage_validate_joboffer', [
             'Id' => $id
+        ]);
+    }
+
+    #[Route('/consultant/workingpagevalidate-candidacy', name: 'app_consultant_workingpage_validate_candidacy')]
+    public function showCandidacyToValidate(CandidacyRepository $candidacyRepository): Response
+    {
+        return $this->render('consultant_workingpage/validate-candidacy.html.twig', [
+            'candidacies' => $candidacyRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/consultant/workingpagevalidation-candidacy/{id}', name:'app_consultant_workingpage_validation_candidacy')]
+    public function validateCandidacy(int $id, EntityManagerInterface $entityManager, ManagerRegistry $doctrine, Candidacy $candidacy): Response
+    {
+        $em = $doctrine->getRepository(Candidacy::class);
+        $candidacy = $em->find($id);
+        $id = $candidacy->getId();
+        $candidacy->setIsValid(true);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_consultant_workingpage_validate_candidacy', [
+            'Id' => $id,
         ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\JobOffer;
 use App\Form\JobOfferType;
 use App\Repository\JobOfferRepository;
+use App\Repository\CandidacyRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,10 +14,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class JobOfferController extends AbstractController
 {
     #[Route('/job/offer/', name: 'app_job_offer_index', methods: ['GET'])]
-    public function index(JobOfferRepository $jobOfferRepository): Response
+    public function index(JobOfferRepository $jobOfferRepository, CandidacyRepository $candidacyRepository): Response
     {   
         return $this->render('job_offer/index.html.twig', [
             'job_offers' => $jobOfferRepository->findAll(),
+            'candidacies' => $candidacyRepository->findAll(),
         ]);
     }
 

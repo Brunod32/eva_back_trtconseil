@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidat{% endblock %}
+
+{% block body %}
+{{ include('_navbar.html.twig') }}
+
+<div class="container">
+    <h1 class="text-center mt-5">{{ app.user.firstname}}, mes candidatures</h1>
+
+    {% for candidacy in candidacies %}
+        <section>
+            Vous avez postulé à l'offre {{ candidacy.jobOffer.jobTitle }}.
+            <br>
+            Description:
+            <br>
+            {{ candidacy.jobOffer.description }}
+            {% if candidacy.isValid %}
+                <p class="validMsg">Cette candidature a été validée par un Consultant.</p>
+            {% else %}
+                <p class="invalidMsg">Cette candidature n'a pas encore été validée par un consultant.</p>
+            {% endif %}
+        </section>
+    {% endfor %}
+</div>
+{% endblock %}

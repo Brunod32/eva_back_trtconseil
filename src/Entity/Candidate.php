@@ -54,6 +54,16 @@ class Candidate implements UserInterface, PasswordAuthenticatedUserInterface
         $this->candidacies = new ArrayCollection();
     }
 
+    /**
+     * Transform to string in Candidacy, validate-candidacy.html.twig
+     * 
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getId();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

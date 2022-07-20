@@ -48,10 +48,5 @@ class CandidacyController extends AbstractController
         return $this->redirectToRoute('app_job_offer_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    // Mannque function pour valider la candidature par un consultant
-    // Les candidatures doivent apparaitre sur la page dans consultant
-    // La validation doit se faire par l'intermédiaire d'un bouton validé comme pour les validation de création de compte
-
-
-
+    
 }
