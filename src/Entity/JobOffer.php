@@ -55,7 +55,7 @@ class JobOffer
     }
 
     /**
-     * Transform to string in Candidacy, validate-candidacy.html.twig
+     * Transform to string function to template
      * 
      * @return string
      */

@@ -18,19 +18,13 @@ class CandidacyController extends AbstractController
     {
         // Récuperer le candidate
         $emCandidate = $doctrine->getRepository(Candidate::class)->find($idCandidate);;
-        // $candidate = $em->find($idCandidate);
-        // $idCandidate = $candidate->getId();
 
         // Récuperer l'annonce
         $emjobOffer = $doctrine->getRepository(JobOffer::class)->find($idJobOffer);
-        // $jobOffer = $em->find($idJobOffer);
-        // $idJobOffer = $jobOffer->getId();
 
         // On set les values dans table candidacy
         $candidacy = new Candidacy();
-        // $candidacy->setCandidate($idCandidate);
         $candidacy->setCandidate($emCandidate);
-        // $candidacy->setJobOffer($idJobOffer);
         $candidacy->setJobOffer($emjobOffer);
         $entityManager->persist($candidacy);
         $entityManager->flush();
@@ -39,11 +33,6 @@ class CandidacyController extends AbstractController
             'success',
             'Vous avez postulé à une annonce. Un consultant doit valider votre demande.'
         );
-        
-        // return $this->render('candidacy/index.html.twig', [
-        //     'idCandidate' => $idCandidate,
-        //     'idJobOffer' => $idJobOffer
-        // ]);
 
         return $this->redirectToRoute('app_job_offer_index', [], Response::HTTP_SEE_OTHER);
     }

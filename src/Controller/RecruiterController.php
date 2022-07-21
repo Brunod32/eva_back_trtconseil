@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Recruiter;
 use App\Form\RecruiterType;
 use App\Repository\RecruiterRepository;
+use App\Repository\CandidacyRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,6 +35,14 @@ class RecruiterController extends AbstractController
         return $this->renderForm('recruiter/edit.html.twig', [
             'recruiter' => $recruiter,
             'form' => $form,
+        ]);
+    }
+
+    #[Route('/recruiter-candidacies', name: 'app_recruiter_candidacies')]
+    public function showCandidateCandidacies(CandidacyRepository $candidacyRepository): Response
+    {
+        return $this->render('recruiter/recruiter-candidacies.html.twig', [
+            'candidacies' => $candidacyRepository->findAll(),
         ]);
     }
 }

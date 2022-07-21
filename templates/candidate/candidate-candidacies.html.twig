@@ -8,18 +8,24 @@
 <div class="container">
     <h1 class="text-center mt-5">{{ app.user.firstname}}, mes candidatures</h1>
 
+    <button class="btn btn-outline-primary">
+        <a href="{{ path('app_candidate') }}" title="Retour au menu candidat"><i class="fa-solid fa-chevron-left"></i></a>
+    </button>
+
+
     {% for candidacy in candidacies %}
-        <section>
-            Vous avez postulé à l'offre {{ candidacy.jobOffer.jobTitle }}.
-            <br>
-            Description:
-            <br>
-            {{ candidacy.jobOffer.description }}
+        <section class="mt-5">
+            <p>
+                Vous avez postulé à l'offre <span class="fw-bold">"{{ candidacy.jobOffer.id }} - {{ candidacy.jobOffer.jobTitle }}"</span>.
+            </p>
+            <p class="fw-bold">Description:</p>
+            <p>{{ candidacy.jobOffer.description | capitalize}}</p>
             {% if candidacy.isValid %}
                 <p class="validMsg">Cette candidature a été validée par un Consultant.</p>
             {% else %}
                 <p class="invalidMsg">Cette candidature n'a pas encore été validée par un consultant.</p>
             {% endif %}
+            <hr>
         </section>
     {% endfor %}
 </div>

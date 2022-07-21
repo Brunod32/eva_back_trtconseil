@@ -8,26 +8,29 @@
 <div class="container">
     <h1 class="text-center mt-5">Mon espace consultant</h1>
 
-    <section class="mt-5">
-        <h2>Gérer les comptes utilisateurs</h2>
-        <div class="my-5 mx-5">
-            <h3>Gérer les candidats</h3>
-            <a href="{{ path('app_consultant_workingpage_validate_candidate') }}">Consulter la liste des comptes candidats</a>
+    <section class="mt-5 row row-cols-2">
+        <div>
+            <h2>Gérer les comptes utilisateurs</h2>
+            <div class="my-5 mx-5">
+                <h3>Gérer les candidats</h3>
+                <a href="{{ path('app_consultant_workingpage_validate_candidate') }}">Consulter la liste des comptes candidats</a>
+            </div>
+            <div class="my-5 mx-5">
+                <h3>Gérer les recruteurs</h3>
+                <a href="{{ path('app_consultant_workingpage_validate_recruiter') }}">Consulter la liste des comptes recruteurs</a>
+            </div>
         </div>
-        <div class="my-5 mx-5">
-            <h3>Gérer les recruteurs</h3>
-            <a href="{{ path('app_consultant_workingpage_validate_recruiter') }}">Consulter la liste des comptes recruteurs</a>
-        </div>
-        <div class="my-5 mx-5">
-            <h3>Gérer les annonces</h3>
-            <a href="{{ path('app_consultant_workingpage_validate_joboffer') }}">Consulter la liste des annonces</a>
-        </div>
-        <div class="my-5 mx-5">
-            <h3>Gérer les candidatures</h3>
-            <a href="{{ path('app_consultant_workingpage_validate_candidacy') }}">Consulter la liste des candidatures</a>
+        <div>
+            <h2>Gérer les annonces</h2>
+            <div class="my-5 mx-5">
+                <h3>Gérer les annonces</h3>
+                <a href="{{ path('app_consultant_workingpage_validate_joboffer') }}">Consulter la liste des annonces</a>
+            </div>
+            <div class="my-5 mx-5">
+                <h3>Gérer les candidatures</h3>
+                <a href="{{ path('app_consultant_workingpage_validate_candidacy') }}">Consulter la liste des candidatures</a>
+            </div>
         </div>
     </section>
-    
-   
 </div>
 {% endblock %}

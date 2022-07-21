@@ -8,32 +8,34 @@
 <div class="container">
     <h1 class="text-center mt-5">{{ app.user.firstname}}, mon espace candidat</h1>
 
-    <section class="userInfo mt-5 mb-5">
-        <h2>Mes informations</h2>
-        {% if app.user.isValid == false %}
-            <p class="invalidMsg">Votre compte n'a pas encore été validé</p>
-        {% elseif app.user.isValid == true %}
-            <p class="validMsg">Votre compte a été validé</p>
-        <p>Nom: {{ app.user.firstname | capitalize }}</p>
-        <p>Prénom: {{ app.user.lastname | capitalize }}</p>
-        <p>Mon email: {{ app.user.email }}</p>
-        <p>Métier: {{ app.user.job | capitalize }}</p>
-        <p>CV: <a href="{{ asset('uploads/' ~ app.user.cv) }}">Voir le CV</a></p>
-        {% endif %}
-        
-        {% if app.user.isValid == true %}
-            <a href="{{ path('app_candidate_edit', {'id': app.user.id}) }}">Modifier/Ajouter des informations</a>
-        {% endif %}
-    </section>
+    <div class="row row-cols-3">
+        <section class="userInfo mt-5">
+            <h2>Mes informations</h2>
+            {% if app.user.isValid == false %}
+                <p class="invalidMsg">Votre compte n'a pas encore été validé</p>
+            {% elseif app.user.isValid == true %}
+                <p class="validMsg">Votre compte a été validé</p>
+            <p>Nom: {{ app.user.firstname | capitalize }}</p>
+            <p>Prénom: {{ app.user.lastname | capitalize }}</p>
+            <p>Mon email: {{ app.user.email }}</p>
+            <p>Métier: {{ app.user.job | capitalize }}</p>
+            <p>CV: <a href="{{ asset('uploads/' ~ app.user.cv) }}">Voir le CV</a></p>
+            {% endif %}
+            
+            {% if app.user.isValid == true %}
+                <a href="{{ path('app_candidate_edit', {'id': app.user.id}) }}">Modifier/Ajouter des informations</a>
+            {% endif %}
+        </section>
+    
+        <section class="mt-5">
+            <h2>Les offres d'emploi</h2>
+            <a href="{{ path('app_job_offer_index') }}">Consulter les offres</a>
+        </section>
 
-    <section>
-        <h2>Les offres d'emploi</h2>
-        <a href="{{ path('app_job_offer_index') }}">Consulter les offres</a>
-    </section>
-
-    <section>
-        <h2>Mes candidatures</h2>
-        <a href="{{ path('app_candidate_candidacies') }}">Consulter mes candidatures</a>
-    </section>
+        <section class="mt-5">
+            <h2>Mes candidatures</h2>
+            <a href="{{ path('app_candidate_candidacies') }}">Consulter mes candidatures</a>
+        </section>
+    </div>
 </div>
 {% endblock %}

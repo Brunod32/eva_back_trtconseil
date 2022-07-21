@@ -7,34 +7,40 @@
 
 <div class="container">
     <h1 class="text-center mt-5">{{ app.user.firstname}}, mon espace recruteur</h1>
+    <div class="row row-cols-3">
+        <section class="userInfo mt-5 mb-5">
+            <h2>Mes informations</h2>
+            {% if app.user.isValid == false %}
+                <p class="invalidMsg">Votre compte n'a pas encore été validé</p>
+            {% elseif app.user.isValid == true %}
+                <p class="validMsg">Votre compte a été validé</p>
+                <p>Nom: {{ app.user.firstname | capitalize }}</p>
+                <p>Prénom: {{ app.user.lastname | capitalize }}</p>
+                <p>Mon email: {{ app.user.email }}</p>
+                <p>Nom de l'entreprise: {{ app.user.companyName | capitalize }}</p>
+                <p>Adresse de l'entreprise: {{ app.user.companyAddress }}</p>
+            {% endif %}
+            
+            {% if app.user.isValid == true %}
+                <a href="{{ path('app_recruiter_edit', {'id': app.user.id}) }}">Modifier/Ajouter des informations</a>
+            {% endif %}
+        </section>
 
-    <section class="userInfo mt-5 mb-5">
-        <h2>Mes informations</h2>
-        {% if app.user.isValid == false %}
-            <p class="invalidMsg">Votre compte n'a pas encore été validé</p>
-        {% elseif app.user.isValid == true %}
-            <p class="validMsg">Votre compte a été validé</p>
-            <p>Nom: {{ app.user.firstname | capitalize }}</p>
-            <p>Prénom: {{ app.user.lastname | capitalize }}</p>
-            <p>Mon email: {{ app.user.email }}</p>
-            <p>Nom de l'entreprise: {{ app.user.companyName | capitalize }}</p>
-            <p>Adresse de l'entreprise: {{ app.user.companyAddress }}</p>
-        {% endif %}
-        
-        {% if app.user.isValid == true %}
-            <a href="{{ path('app_recruiter_edit', {'id': app.user.id}) }}">Modifier/Ajouter des informations</a>
-        {% endif %}
-    </section>
+        <section class=" mt-5 mb-5">
+            <h2>Offres d'emploi</h2>
+            {% if app.user.isValid == false %}
+                <p class="invalidMsg">Votre compte n'a pas encore été validé</p>
+            {% elseif app.user.isValid == true %}
+                <a href="{{ path('app_job_offer_index') }}">Consulter la liste des offres d'emploi</a>
+                <br>
+                <a href="{{ path('app_job_offer_new') }}">Ajouter une offre d'emploi</a>
+            {% endif %}
+        </section>
 
-    <section>
-        <h2>Offres d'emploi</h2>
-        {% if app.user.isValid == false %}
-            <p class="invalidMsg">Votre compte n'a pas encore été validé</p>
-        {% elseif app.user.isValid == true %}
-            <a href="{{ path('app_job_offer_index') }}">Consulter la liste des offres d'emploi</a>
-            <br>
-            <a href="{{ path('app_job_offer_new') }}">Ajouter une offre d'emploi</a>
-        {% endif %}
-    </section>
+        <section class="mt-5 mb-5">
+            <h2>Les candidatures</h2>
+            <a href="{{ path('app_recruiter_candidacies') }}">Consulter les candidatures</a>
+        </section>
+    </div>
 </div>
 {% endblock %}

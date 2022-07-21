@@ -21,9 +21,13 @@
     </section>
     
     {% if 'ROLE_RECRUITER' in app.user.roles %}
-    <div class="mx-5 mb-5 d-flex justify-content-end">
-        <a href="{{ path('app_job_offer_new') }}" class="btn btn-outline-primary"><i class="fa-solid fa-circle-plus" title="Créer une nouvelle offre d'emploi"></i></a>
-    </div>
+        <div class="mx-5 mb-5 d-flex justify-content-end">
+            <a href="{{ path('app_job_offer_new') }}" class="btn btn-outline-primary"><i class="fa-solid fa-circle-plus" title="Créer une nouvelle offre d'emploi"></i></a>
+        </div>
+    {% elseif 'ROLE_CANDIDATE' in app.user.roles %}
+        <div class="mx-5 mb-5">
+            <a href="{{ path('app_candidate') }}" class="btn btn-outline-primary"><i class="fa-solid fa-chevron-left" title="Créer une nouvelle offre d'emploi"></i></a>
+        </div>
     {% endif %}
 
     <section class="container">
@@ -50,11 +54,7 @@
                             </div>
                             <div class="card-footer d-flex justify-content-around">
                             {% if 'ROLE_CANDIDATE' in app.user.roles %}
-                                <a href="{{ path('app_candidacy', {'idCandidate': app.user.Id, 'idJobOffer': job_offer.id }) }}">Postuler</a>
-                                {# <pre>
-                                    id annonce: {{ dump (job_offer.id) }}
-                                    id user : {{ dump (app.user.id) }}
-                                </pre> #}
+                                <a href="{{ path('app_candidacy', {'idCandidate': app.user.Id, 'idJobOffer': job_offer.id }) }}">Postuler</a> 
                             {% elseif 'ROLE_RECRUITER' in app.user.roles %}
                                 <a href="{{ path('app_job_offer_show', {'id': job_offer.id}) }}">Voir</a>
                                 <a href="{{ path('app_job_offer_edit', {'id': job_offer.id}) }}">Modifier</a>
@@ -67,7 +67,7 @@
                     <div class="card mb-3" style="width: 20rem;">
                             <h5 class="card-header text-center invalidMsg">Annonce non validée</h5>
                             <div class="card-body">
-                                <p class="text-center fs-1">....</p>
+                                <p class="text-center text-muted">A paraître</p>
                             </div>
                     </div>
                 </div>
