@@ -33,7 +33,7 @@
             {% elseif app.user.isValid == true %}
                 <a href="{{ path('app_job_offer_index') }}">Consulter la liste des offres d'emploi</a>
                 <br>
-                <a href="{{ path('app_job_offer_new') }}">Ajouter une offre d'emploi</a>
+                <a href="{{ path('app_job_offer_new', {'idRecruiter': app.user.id}) }}">Ajouter une offre d'emploi</a>
             {% endif %}
         </section>
 

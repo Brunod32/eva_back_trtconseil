@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\JobOffer;
+use App\Entity\recruiter;
 use App\Form\JobOfferType;
 use App\Repository\JobOfferRepository;
 use App\Repository\CandidacyRepository;
@@ -10,6 +11,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
 
 class JobOfferController extends AbstractController
 {
@@ -22,12 +25,18 @@ class JobOfferController extends AbstractController
         ]);
     }
 
-    #[Route('/recruiter/job/offer/new', name: 'app_job_offer_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, JobOfferRepository $jobOfferRepository): Response
+    #[Route('/recruiter/job/offer/new/{idRecruiter}', name: 'app_job_offer_new', methods: ['GET', 'POST'])]
+    public function new(int $idRecruiter, EntityManagerInterface $entityManager,ManagerRegistry $doctrine, Request $request, JobOfferRepository $jobOfferRepository): Response
     {
+        // Récupérer le recruteur
+        $emRecruiter = $doctrine->getRepository(Recruiter::class)->find($idRecruiter);
+
         $jobOffer = new JobOffer();
         $form = $this->createForm(JobOfferType::class, $jobOffer);
         $form->handleRequest($request);
+
+        $jobOffer->setRecruiter($emRecruiter);
+        $entityManager->flush();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $jobOfferRepository->add($jobOffer, true);
