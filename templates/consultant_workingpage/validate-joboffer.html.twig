@@ -30,7 +30,7 @@
                             <p class="validMsg">Annonce validée</p>
                         {% elseif joboffer.isValid == false %}
                             <button class="btn btn-outline-primary my-2">
-                                <a href="{{ path('app_consultant_workingpage_validation_joboffer', {'id': joboffer.Id }) }}">Valider l'annonce</a>
+                                <a href="{{ path('app_consultant_workingpage_validation_joboffer', {'id': joboffer.Id, 'idConsultant': app.user.id}) }}">Valider l'annonce</a>
                             </button>
                         {% endif %}
                     </div>

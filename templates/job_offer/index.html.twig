@@ -56,6 +56,9 @@
                             {% if 'ROLE_CANDIDATE' in app.user.roles %}
                                 <a href="{{ path('app_candidacy', {'idCandidate': app.user.Id, 'idJobOffer': job_offer.id }) }}">Postuler</a> 
                             {% elseif 'ROLE_RECRUITER' in app.user.roles %}
+                            {# <pre>
+                                {{ dump(job_offer.recruiter) }}
+                            </pre> #}
                                 <a href="{{ path('app_job_offer_show', {'id': job_offer.id}) }}">Voir</a>
                                 <a href="{{ path('app_job_offer_edit', {'id': job_offer.id}) }}">Modifier</a>
                             {% endif %}

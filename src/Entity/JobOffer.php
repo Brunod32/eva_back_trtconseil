@@ -36,9 +36,6 @@ class JobOffer
     #[ORM\JoinColumn(nullable: true)]
     private ?Recruiter $recruiter;
 
-    // #[ORM\ManyToMany(targetEntity: Candidate::class, inversedBy: 'jobOffers')]
-    // private Collection $candidate;
-
     #[ORM\Column(type: 'integer')]
     private int $salary;
 
@@ -140,30 +137,6 @@ class JobOffer
 
         return $this;
     }
-
-    // /**
-    //  * @return Collection<int, Candidate>
-    //  */
-    // public function getCandidate(): Collection
-    // {
-    //     return $this->candidate;
-    // }
-
-    // public function addCandidate(Candidate $candidate): self
-    // {
-    //     if (!$this->candidate->contains($candidate)) {
-    //         $this->candidate[] = $candidate;
-    //     }
-
-    //     return $this;
-    // }
-
-    // public function removeCandidate(Candidate $candidate): self
-    // {
-    //     $this->candidate->removeElement($candidate);
-
-    //     return $this;
-    // }
 
     public function getSalary(): ?int
     {

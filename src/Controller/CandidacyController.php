@@ -17,7 +17,7 @@ class CandidacyController extends AbstractController
     public function newCandidacy(int $idCandidate, int $idJobOffer, ManagerRegistry $doctrine, EntityManagerInterface $entityManager): Response
     {
         // Récuperer le candidate
-        $emCandidate = $doctrine->getRepository(Candidate::class)->find($idCandidate);;
+        $emCandidate = $doctrine->getRepository(Candidate::class)->find($idCandidate);
 
         // Récuperer l'annonce
         $emjobOffer = $doctrine->getRepository(JobOffer::class)->find($idJobOffer);
