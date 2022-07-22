@@ -18,12 +18,14 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 #[Route('/candidate')]
 class CandidateController extends AbstractController
 {
+    // HomePage candidate
     #[Route('/candidate', name: 'app_candidate')]
     public function index(): Response
     {
         return $this->render('candidate/index.html.twig');
     }
 
+    // Update candidate informations page
     #[Route('/{id}/edit', name: 'app_candidate_edit', methods: ['GET', 'POST'])]
     public function edit(int $id, Request $request, Candidate $candidate, CandidateRepository $candidateRepository, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
@@ -73,6 +75,7 @@ class CandidateController extends AbstractController
         ]);
     }
 
+    // Candidacies page
     #[Route('/candidate-candidacies', name: 'app_candidate_candidacies')]
     public function showCandidateCandidacies(CandidacyRepository $candidacyRepository): Response
     {

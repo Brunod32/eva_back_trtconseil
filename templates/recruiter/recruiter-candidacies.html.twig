@@ -1,3 +1,4 @@
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Recruteur{% endblock %}
@@ -12,18 +13,36 @@
         <a href="{{ path('app_recruiter') }}" title="Retour au menu recruteur"><i class="fa-solid fa-chevron-left"></i></a>
     </button>
 
-
-    {% for candidacy in candidacies %}
-        <section class="mt-5">
-            {% if candidacy.isValid %}
-            <p>
-                <span class="fw-bold">{{ candidacy.candidate.firstname | capitalize }} {{ candidacy.candidate.lastname | capitalize }}</span>, {{ candidacy.candidate.job }}, 
-                a postulé à l'annonce <span class="fw-bold">{{ candidacy.JobOffer.id }} - {{ candidacy.JobOffer.jobtitle | capitalize }}</span>.
-            </p>
-            <p> <span class="fw-bold">Description:</span> {{ candidacy.jobOffer.description | capitalize}}</p>
-            <hr>
+    {% for joboffer in joboffers %}
+        {% if joboffer.recruiter is not null %}
+            {% if app.user.email is same as(joboffer.recruiter.email) %}
+                {% for candidacy in candidacies %}
+                    <section class="mt-5">
+                        {% if candidacy.isValid %}      
+                            <p>
+                                <span class="fw-bold">
+                                    {{ candidacy.candidate.firstname | capitalize }} {{ candidacy.candidate.lastname | capitalize }}
+                                </span>
+                                    , {{ candidacy.candidate.job }}, 
+                                    a postulé à l'annonce 
+                                <span class="fw-bold">
+                                    {{ candidacy.JobOffer.id }} - {{ candidacy.JobOffer.jobtitle | capitalize }}
+                                </span>.
+                            </p>
+                            <p>
+                                <span class="fw-bold">Description:</span> {{ candidacy.jobOffer.description | capitalize}}
+                            </p>
+                            {# <p>
+                                <span class="fw-bold">mail recruteur dans joboffer:</span> {{ joboffer.recruiter.email }}
+                                <br>
+                                <span class="fw-bold">mail recruteur connecté:</span> {{ app.user.email }}
+                            </p> #}
+                            <hr>
+                        {% endif %}
+                    </section>
+                {% endfor %}
             {% endif %}
-        </section>
+        {% endif %}
     {% endfor %}
 </div>
 {% endblock %}

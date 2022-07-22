@@ -18,7 +18,7 @@
         {% for candidacy in candidacies %}
             <div class="container d-flex justify-content-center">
                 <div class="card mb-3" style="width: 20rem;">
-                    <h5 class="card-header text-center">{{ candidacy.Id }}</h5>
+                    <h5 class="card-header text-center">{{ candidacy.Id }} - {{ candidacy.jobOffer.jobTitle }}</h5>
                     <div class="card-body">
                         <p class="card-text">
                             Le candidate {{ candidacy.candidate.firstname }} a postulé à l'annonce {{ candidacy.jobOffer.jobTitle }}
@@ -30,7 +30,7 @@
                             <p class="validMsg">Candidature validée</p>
                         {% elseif candidacy.isValid == false %}
                             <button class="btn btn-outline-primary my-2">
-                                <a href="{{ path('app_consultant_workingpage_validation_candidacy', {'id': candidacy.joboffer.Id }) }}">Valider la candidature</a>
+                                <a href="{{ path('app_consultant_workingpage_validation_candidacy', {'id': candidacy.Id }) }}">Valider la candidature</a>
                             </button>
                         {% endif %}
                     </div>

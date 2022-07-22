@@ -2,24 +2,30 @@
 
 namespace App\Controller;
 
+use App\Entity\Candidacy;
+use App\Entity\JobOffer;
 use App\Entity\Recruiter;
 use App\Form\RecruiterType;
 use App\Repository\RecruiterRepository;
 use App\Repository\CandidacyRepository;
+use App\Repository\JobOfferRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Persistence\ManagerRegistry;
 
 #[Route('/recruiter')]
 class RecruiterController extends AbstractController
 {
+    // Homepage recruiter
     #[Route('/recruiter', name: 'app_recruiter')]
     public function index(): Response
     {
         return $this->render('recruiter/index.html.twig');
     }
 
+    // Update recruiter informations page
     #[Route('/{id}/edit', name: 'app_recruiter_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Recruiter $recruiter, RecruiterRepository $recruiterRepository): Response
     {
@@ -38,11 +44,20 @@ class RecruiterController extends AbstractController
         ]);
     }
 
+    // Candidacies page
+    // Ne doit retourner que les candidatures pour les offres que le recruteur a posté
+    // #[Route('/recruiter-candidacies/{id}', name: 'app_recruiter_candidacies')]
     #[Route('/recruiter-candidacies', name: 'app_recruiter_candidacies')]
-    public function showCandidateCandidacies(CandidacyRepository $candidacyRepository): Response
+    public function showCandidacies(ManagerRegistry $doctrine,RecruiterRepository $recruiterRepository, CandidacyRepository $candidacyRepository, JobOfferRepository $jobOfferRepository): Response
     {
-        return $this->render('recruiter/recruiter-candidacies.html.twig', [
+        // $idRecruiter = $recruiterRepository->findByIdRecruiter($id);
+        // $emailRecruiter = $recruiterRepository->findByEmailRecruiter($email);
+
+       return $this->render('recruiter/recruiter-candidacies.html.twig', [
             'candidacies' => $candidacyRepository->findAll(),
+            'joboffers' => $jobOfferRepository->findAll(),
+            // 'idRecruiter' => $idRecruiter
+            // 'emailRecruiter' => $emailRecruiter
         ]);
     }
 }

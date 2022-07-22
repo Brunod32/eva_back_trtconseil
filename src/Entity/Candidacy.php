@@ -20,6 +20,7 @@ class Candidacy
     private ?Candidate $candidate;
 
     #[ORM\ManyToOne(targetEntity: JobOffer::class, inversedBy: 'candidacies')]
+    #[ORM\JoinColumn(onDelete:'cascade')]
     private ?JobOffer $jobOffer;
 
     public function getId(): ?int

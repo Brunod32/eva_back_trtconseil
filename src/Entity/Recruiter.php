@@ -50,6 +50,16 @@ class Recruiter implements UserInterface, PasswordAuthenticatedUserInterface
         $this->jobOffers = new ArrayCollection();
     }
 
+    /**
+     * Transform to string function to template
+     * 
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getId();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

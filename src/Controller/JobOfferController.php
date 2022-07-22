@@ -16,6 +16,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class JobOfferController extends AbstractController
 {
+    // Homepage Joboffer
     #[Route('/job/offer/', name: 'app_job_offer_index', methods: ['GET'])]
     public function index(JobOfferRepository $jobOfferRepository, CandidacyRepository $candidacyRepository): Response
     {   
@@ -25,6 +26,7 @@ class JobOfferController extends AbstractController
         ]);
     }
 
+    // Create new joboffer page
     #[Route('/recruiter/job/offer/new/{idRecruiter}', name: 'app_job_offer_new', methods: ['GET', 'POST'])]
     public function new(int $idRecruiter, EntityManagerInterface $entityManager,ManagerRegistry $doctrine, Request $request, JobOfferRepository $jobOfferRepository): Response
     {
@@ -55,6 +57,7 @@ class JobOfferController extends AbstractController
         ]);
     }
 
+    // Details joboffer page
     #[Route('/job/offer/{id}', name: 'app_job_offer_show', methods: ['GET'])]
     public function show(JobOffer $jobOffer): Response
     {
@@ -63,6 +66,7 @@ class JobOfferController extends AbstractController
         ]);
     }
 
+    // Update joboffer page
     #[Route('/{id}/edit', name: 'app_job_offer_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, JobOffer $jobOffer, JobOfferRepository $jobOfferRepository): Response
     {
@@ -81,6 +85,7 @@ class JobOfferController extends AbstractController
         ]);
     }
 
+    // Remove joboffer page
     #[Route('/job/offer/{id}', name: 'app_job_offer_delete', methods: ['POST'])]
     public function delete(Request $request, JobOffer $jobOffer, JobOfferRepository $jobOfferRepository): Response
     {
