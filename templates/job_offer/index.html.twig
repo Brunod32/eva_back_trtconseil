@@ -58,11 +58,11 @@
                                 <p class="card-text">{{ job_offer.salary }} €/mois</p>
                                 <p class="card-text">{{ job_offer.schedule }} heures/semaine</p>
                                 <p class="card-subtitle mb-2 text-muted">{{ job_offer.workplace | capitalize}}</p>
-                                <p>Postée par {{job_offer.recruiter}}</p>
+                                {# <p>Postée par {{job_offer.recruiter}}</p> #}
                             </div>
                             <div class="card-footer d-flex justify-content-around">
                             {% if 'ROLE_CANDIDATE' in app.user.roles %}
-                                <a href="{{ path('app_candidacy', {'idCandidate': app.user.Id, 'idJobOffer': job_offer.id }) }}">Postuler</a> 
+                                <a href="{{ path('app_candidacy', {'idCandidate': app.user.Id, 'idJobOffer': job_offer.id }) }}">Postuler</a>
                             {% elseif 'ROLE_RECRUITER' in app.user.roles %}
                             {# <pre>
                                 {{ dump(job_offer.recruiter) }}

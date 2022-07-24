@@ -56,28 +56,6 @@ class RecruiterRepository extends ServiceEntityRepository implements PasswordUpg
         $this->add($user, true);
     }
 
-//    public function findByIdRecruiter(int $id): ?Recruiter
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.id = :id')
-//            ->setParameter('id', $id)
-//            ->setMaxResults(1)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
-
-//    public function findByEmailRecruiter(string $email): ?Recruiter
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.email = :email')
-//            ->setParameter('email', $email)
-//            ->setMaxResults(1)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
-
 //    /**
 //     * @return Recruiter[] Returns an array of Recruiter objects
 //     */

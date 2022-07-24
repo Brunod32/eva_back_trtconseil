@@ -14,5 +14,8 @@
     {{ form_row(form.schedule, {
         label: 'Nombre d\'heures/semaine'
     }) }}
+    {{ form_row(form.recruiter, {
+        label: 'Votre identifiant'
+    }) }}
     <button class="btn btn-outline-primary ml-5 mt-2">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}

@@ -45,19 +45,12 @@ class RecruiterController extends AbstractController
     }
 
     // Candidacies page
-    // Ne doit retourner que les candidatures pour les offres que le recruteur a posté
-    // #[Route('/recruiter-candidacies/{id}', name: 'app_recruiter_candidacies')]
     #[Route('/recruiter-candidacies', name: 'app_recruiter_candidacies')]
-    public function showCandidacies(ManagerRegistry $doctrine,RecruiterRepository $recruiterRepository, CandidacyRepository $candidacyRepository, JobOfferRepository $jobOfferRepository): Response
+    public function showCandidacies(CandidacyRepository $candidacyRepository, JobOfferRepository $jobOfferRepository): Response
     {
-        // $idRecruiter = $recruiterRepository->findByIdRecruiter($id);
-        // $emailRecruiter = $recruiterRepository->findByEmailRecruiter($email);
-
-       return $this->render('recruiter/recruiter-candidacies.html.twig', [
+        return $this->render('recruiter/recruiter-candidacies.html.twig', [
             'candidacies' => $candidacyRepository->findAll(),
             'joboffers' => $jobOfferRepository->findAll(),
-            // 'idRecruiter' => $idRecruiter
-            // 'emailRecruiter' => $emailRecruiter
         ]);
     }
 }
