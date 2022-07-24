@@ -28,6 +28,7 @@
         </div>
     </section>
 
+
     <section class="container">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
         
@@ -41,7 +42,6 @@
 
         {% for job_offer in job_offers %}
             {% if job_offer.isValid == true %}
-                {% if job_offer.recruiter.email is same as(app.user.email) %}
                     <div class="container d-flex justify-content-center">
                         <div class="card mb-3" style="width: 20rem;">
                                 <h5 class="card-header text-center">{{ job_offer.jobTitle | capitalize}}</h5>
@@ -50,18 +50,16 @@
                                     <p class="card-text">{{ job_offer.salary }} €/mois</p>
                                     <p class="card-text">{{ job_offer.schedule }} heures/semaine</p>
                                     <p class="card-subtitle mb-2 text-muted">{{ job_offer.workplace | capitalize}}</p>
-                                    <p>Postée par {{job_offer.recruiter.email}}</p>
                                 </div>
                                 <div class="card-footer d-flex justify-content-around">
-                                {% if 'ROLE_CANDIDATE' in app.user.roles %}
-                                    <a href="{{ path('app_candidacy', {'idCandidate': app.user.Id, 'idJobOffer': job_offer.id }) }}">Postuler</a>
-                                {% elseif 'ROLE_RECRUITER' in app.user.roles %}
-                                {# <pre>
-                                    {{ dump(job_offer.recruiter) }}
-                                </pre> #}
-                                    <a href="{{ path('app_job_offer_show', {'id': job_offer.id}) }}">Voir</a>
-                                    <a href="{{ path('app_job_offer_edit', {'id': job_offer.id}) }}">Modifier</a>
-                                {% endif %}
+                                    {% if 'ROLE_CANDIDATE' in app.user.roles %}
+                                        <a href="{{ path('app_candidacy', {'idCandidate': app.user.id, 'idJobOffer': job_offer.id }) }}"  onclick=btnhide(e) class="btnPostuler">Postuler</a>
+                                    {% elseif 'ROLE_RECRUITER' in app.user.roles %}
+                                        {% if job_offer.recruiter.email is same as(app.user.email) %}
+                                            <a href="{{ path('app_job_offer_show', {'id': job_offer.id}) }}">Voir</a>
+                                            <a href="{{ path('app_job_offer_edit', {'id': job_offer.id}) }}">Modifier</a>
+                                        {% endif %}
+                                    {% endif %}
                                 </div>
                         </div>
                     </div>
@@ -74,7 +72,6 @@
                                 </div>
                         </div>
                     </div>
-                {% endif %}
             {% endif %}
         {% endfor %}
         </div>

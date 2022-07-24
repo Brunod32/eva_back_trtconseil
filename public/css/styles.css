@@ -125,3 +125,11 @@ html {
     color: green;
     /* font-weight: bolder; */
 }
+
+.btnPostuler {
+    display: block;
+}
+
+.btnPostulerHide {
+    display: none;
+}

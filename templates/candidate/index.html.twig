@@ -19,7 +19,11 @@
             <p>Prénom: {{ app.user.lastname | capitalize }}</p>
             <p>Mon email: {{ app.user.email }}</p>
             <p>Métier: {{ app.user.job | capitalize }}</p>
-            <p>CV: <a href="{{ asset('uploads/' ~ app.user.cv) }}">Voir le CV</a></p>
+                {% if app.user.cv %}
+                    <p>CV: <a href="{{ asset('uploads/' ~ app.user.cv) }}">Voir le CV</a></p>
+                {% else %}
+                    <p>CV: aucun CV n'a été téléchargé</p>
+                {% endif %}
             {% endif %}
             
             {% if app.user.isValid == true %}
