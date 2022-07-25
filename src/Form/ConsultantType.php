@@ -20,15 +20,15 @@ class ConsultantType extends AbstractType
             ->add('firstname', TextType::class)
             ->add('lastname', TextType::class)
             ->add('email', EmailType::class)
-            ->add('roles', CollectionType::class, [
-                'entry_type'   => ChoiceType::class,
-                'entry_options'  => [
-                    'label' => false,
-                    'choices' => [
-                        'Consultant' => 'ROLE_CONSULTANT',
-                    ],
-                ],
-            ])
+            // ->add('roles', CollectionType::class, [
+            //     'entry_type'   => ChoiceType::class,
+            //     'entry_options'  => [
+            //         'label' => false,
+            //         'choices' => [
+            //             'Consultant' => 'ROLE_CONSULTANT',
+            //         ],
+            //     ],
+            // ])
             ->add('password', PasswordType::class)
         ;
     }
