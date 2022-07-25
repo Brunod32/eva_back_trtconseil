@@ -17,8 +17,6 @@
         {# <h2>Liste des comptes recruteur</h2> #}
         <div class="my-3 mx-5">	
         {% for recruiter in recruiters %}
-            {# Id : {{ recruiter.Id }}
-            <br> #}
             Nom : {{ recruiter.lastname | capitalize }}
             <br>
             Prénom : {{ recruiter.firstname | capitalize }}
@@ -32,15 +30,13 @@
 
             {% if recruiter.isValid == false %}
                 Statut : <span class="invalidMsg">A valider</span>
+                <button class="btn btn-outline-primary mt-2 mb-5">
+                    <a href="{{ path('app_consultant_workingpage_validation_recruiter', {'id': recruiter.Id }) }}">Valider le compte</a>
+                </button>
             {% else %}
                 Statut : <span class="validMsg">Validé</span>
             {% endif %}
-            <br>
-
-            <button class="btn btn-outline-primary mt-2 mb-5">
-                <a href="{{ path('app_consultant_workingpage_validation_recruiter', {'id': recruiter.Id }) }}">Valider le compte</a>
-            </button>
-            <br>
+            <hr>
         {% endfor %}
         </div>
     </section>

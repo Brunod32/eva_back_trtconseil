@@ -39,7 +39,11 @@
 
         <section class="mt-5 mb-5">
             <h2>Les candidatures</h2>
-            <a href="{{ path('app_recruiter_candidacies') }}">Consulter les candidatures</a>
+             {% if app.user.isValid == false %}
+                <p class="invalidMsg">Votre compte n'a pas encore été validé</p>
+            {% elseif app.user.isValid == true %}
+                <a href="{{ path('app_recruiter_candidacies') }}">Consulter les candidatures</a>
+            {% endif %}
         </section>
     </div>
 </div>

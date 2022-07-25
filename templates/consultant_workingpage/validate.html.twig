@@ -28,15 +28,18 @@
             Métier : {{ candidate.job  | capitalize}}
             <br>
             {% if candidate.isValid == false %}
+            <div>
                 Statut : <span class="invalidMsg">A valider</span>
+            </div>
+            <div>
+                <button class="btn btn-outline-primary my-2">
+                    <a href="{{ path('app_consultant_workingpage_validation', {'id': candidate.Id }) }}">Valider le compte</a>
+                </button>
+            <div>
             {% else %}
                 Statut : <span class="validMsg">Validé</span>
             {% endif %}
-            <br>
-            <button class="btn btn-outline-primary mt-2 mb-5">
-                <a href="{{ path('app_consultant_workingpage_validation', {'id': candidate.Id }) }}">Valider le compte</a>
-            </button>
-            <br>
+            <hr>
         {% endfor %}
         </div>
     </section>

@@ -33,12 +33,20 @@
     
         <section class="mt-5">
             <h2>Les offres d'emploi</h2>
-            <a href="{{ path('app_job_offer_index') }}">Consulter les offres</a>
+            {% if app.user.isValid == false %}
+                <p class="invalidMsg">Votre compte n'a pas encore été validé</p>
+            {% elseif app.user.isValid == true %}
+                <a href="{{ path('app_job_offer_index') }}">Consulter les offres</a>
+            {% endif %}
         </section>
 
         <section class="mt-5">
             <h2>Mes candidatures</h2>
-            <a href="{{ path('app_candidate_candidacies') }}">Consulter mes candidatures</a>
+            {% if app.user.isValid == false %}
+                <p class="invalidMsg">Votre compte n'a pas encore été validé</p>
+            {% elseif app.user.isValid == true %}
+                <a href="{{ path('app_candidate_candidacies') }}">Consulter mes candidatures</a>
+            {% endif %}
         </section>
     </div>
 </div>
