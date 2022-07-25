@@ -6,16 +6,25 @@ Pour installer le projet sur votre machine, vous devez le cloner depuis le dép�
 <br/>
   `git clone https://github.com/Brunod32/eva_back_trtconseil.git`  
 <br/>
-  Rendez vous deans le dossier ou vous avez cloner le projet en tapant `cd eva_back_trtconseil`.
-  Ensuite, tapez la commande `composer install` pour installer toutes les dépendances nécessaires au bon focntionnement du projet.
+  Rendez vous deans le dossier ou vous avez cloner le projet en tapant
 <br/>
-  Un fichier .env est présent à la racine du projet. Pour des raisons de sécurité, créez parallèlement un fichier .env.local en y copiant le contenu du fichier .env modifié avec les informations propres au projet.
+ `cd eva_back_trtconseil`  
 <br/>
-  Créez la base de données avec `php bin/console doctrine:database:create`
+ Installer toutes les dépendances 
+ <br/> 
+ `composer install`  
 <br/>
-  Faites la migration avec `php bin/console make:migration`
+  Créez la base de données avec
+ <br/>
+  `php bin/console doctrine:database:create`  
 <br/>
-  Lancez le serveur Symfony `symfony serve`
+  Faites la migration avec 
+ <br/>
+ `php bin/console make:migration`  
+<br/>
+  Lancez le serveur Symfony 
+ <br/>
+  `symfony serve`  
 
 
 ## Online usage
