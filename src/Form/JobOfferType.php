@@ -23,7 +23,7 @@ class JobOfferType extends AbstractType
             ->add('salary', IntegerType::class)
             ->add('schedule', IntegerType::class)
             // ->add('consultant')
-            ->add('recruiter')
+            // ->add('recruiter')
             // ->add('candidate')
         ;
     }

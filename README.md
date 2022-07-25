@@ -1,18 +1,28 @@
-# eva_back_trtconseil
+# Evaluation d'entrainement en cours de formation: développer la partie back-end d'une application web
 
-## Local usage
+## Utilisation en local
 
-To install this project, you can clone the repository with the git clone command  
+Pour installer le projet sur votre machine, vous devez le cloner depuis le dépôt Github en utilisant la commande
 <br/>
   `git clone https://github.com/Brunod32/eva_back_trtconseil.git`  
 <br/>
-  Then, do `composer install` to get all the required dependencies.  
+  Rendez vous deans le dossier ou vous avez cloner le projet en tapant `cd eva_back_trtconseil`.
+  Ensuite, tapez la commande `composer install` pour installer toutes les dépendances nécessaires au bon focntionnement du projet.
 <br/>
-You need XAMPP, WAMP, LAMP or use the symfony server powered by symfony CLI (by doing `symfony serve` in a terminal) to transform your machine as a server.
+  Un fichier .env est présent à la racine du projet. Pour des raisons de sécurité, créez parallèlement un fichier .env.local en y copiant le contenu du fichier .env modifié avec les informations propres au projet.
+<br/>
+  Créez la base de données avec `php bin/console doctrine:database:create`
+<br/>
+  Faites la migration avec `php bin/console make:migration`
+<br/>
+  Lancez le serveur Symfony `symfony serve`
 
 
 ## Online usage
 
 The project have been deploy on heroku at  
 
-###  Deployment procedure
+
+## Création d'un administrateur
+
+Rendez-vous à l'adresse https://127.0.0.1:8000/register/admin et remplissez le formulaire.

@@ -15,10 +15,10 @@ class MailController extends AbstractController
     {
         $email = (new Email())
             ->from('bruno.dahlem2@gmail.com')
-            ->to('to@example.com')
-            ->subject('This e-mail is for testing purpose')
-            ->text('This is the text version')
-            ->html('<p>This is the HTML version</p>')
+            ->to('bruno.dahlem@sfr.fr')
+            ->subject('Test mail 25/07/22 à 09:51')
+            ->text('mail 25/07/22 à 09:51')
+            ->html('<p>mail 25/07/22 à 09:51</p>')
         ;
 
         $mailer->send($email);
