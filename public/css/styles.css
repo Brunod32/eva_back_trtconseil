@@ -10,8 +10,6 @@ nav {
     display: flex;
     justify-content: space-between;
     box-shadow: 0 10px 35px -2px #252525;
-    /* align-items: center; */
-    /* padding-bottom: 0; */
 }
 
 .navbar-title {
@@ -54,11 +52,6 @@ html {
 }
 
 @media screen and (max-width: 1030px) {
-    /* nav {
-        height: 200px;
-        display: block;
-    } */
-
     .navbar-title {
         margin-left: 2rem;
     }
@@ -81,7 +74,7 @@ html {
 /* Homepage */
 .homepage {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 3rem;
 }
 

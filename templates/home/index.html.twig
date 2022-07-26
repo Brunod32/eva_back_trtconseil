@@ -13,8 +13,10 @@
     {% endfor %}
 
     <section class="container homepage main mb-5">
+    <div class="row">
         <h1 class="homepage__description my-5 mx-5">Favoriser la rencontre des talents</h1>     
-        <img class="homepage__img" src="{{ asset('/img/job.jpg') }}" alt="Poignée de mains">
+        <img class="homepage__img mb-2" src="{{ asset('/img/job.jpg') }}" alt="Poignée de mains">
+    </div>
     </section>
     
     {{ include('_footer.html.twig') }}

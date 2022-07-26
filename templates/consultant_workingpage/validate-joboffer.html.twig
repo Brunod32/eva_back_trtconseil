@@ -8,13 +8,13 @@
 <div class="container">
     <h1 class="text-center mt-5">Liste des annonces</h1>
     
-    <button class="btn btn-outline-primary">
+    <button class="btn btn-outline-primary mb-5">
         <a href="{{ path('app_consultant_workingpage')}}" title="Accueil espace Consultant">
             <i class="fa-solid fa-angle-left"></i>
         </a>
     </button>
    <section class="container">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+        <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-3">
         {% for joboffer in joboffers %}
             <div class="container d-flex justify-content-center">
                 <div class="card mb-3" style="width: 20rem;">
