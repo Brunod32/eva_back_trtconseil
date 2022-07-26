@@ -16,6 +16,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 #[Route('/consultant')]
 class ConsultantWorkingpageController extends AbstractController
@@ -117,13 +119,47 @@ class ConsultantWorkingpageController extends AbstractController
 
     // Candidacies validation page
     #[Route('/consultant/workingpagevalidation-candidacy/{id}', name:'app_consultant_workingpage_validation_candidacy')]
-    public function validateCandidacy(int $id, EntityManagerInterface $entityManager, ManagerRegistry $doctrine, Candidacy $candidacy): Response
+    public function validateCandidacy(
+        int $id, 
+        EntityManagerInterface $entityManager, 
+        ManagerRegistry $doctrine, 
+        Candidacy $candidacy, 
+        JobOfferRepository $jobOfferRepository,
+        CandidateRepository $candidateRepository,
+        MailerInterface $mailer
+        ): Response
     {
         $em = $doctrine->getRepository(Candidacy::class);
         $candidacy = $em->find($id);
         $id = $candidacy->getId();
         $candidacy->setIsValid(true);
         $entityManager->flush();
+
+        // send mail function to recruiter
+        $candidate = $candidateRepository->find($candidacy->getCandidate());
+        $jobOffer = $jobOfferRepository->find($candidacy->getJobOffer());
+        $recruiterEmail = $jobOffer->getRecruiter()->getEmail();
+        $recruiter = $jobOffer->getRecruiter();
+        
+
+        $email = (new Email())
+            ->from('brunod.dev@gmail.com')
+            // Le to ligne 148 fonctionne mais commenté pour les tests, plus de mail envoyer avec adresse sfr en dur dans le code
+            // ->to($recruiterEmail)
+            ->to('bruno.dahlem@sfr.fr')
+            ->subject('Nouvelle candidature')
+            // ->attachFromPath('uploads/' . $candidate->getCV(), 'CV', 'application/pdf')
+            ->html('
+                <p>Bonjour '. $recruiter->getFirstname().' '.$recruiter->getLastname().',</p>
+                <br>
+                <p>Le candidat ' . $candidate->getFirstName() . ' ' . $candidate->getLastName() . ' vient de postuler à votre annonce "' . $jobOffer->getJobTitle() . '".</p>
+                <br>
+                <p>Vous trouverez son CV en pièce jointe.</p>
+            ')
+            
+        ;
+
+        $mailer->send($email);
 
         return $this->redirectToRoute('app_consultant_workingpage_validate_candidacy', [
             'Id' => $id,
