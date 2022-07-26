@@ -29,10 +29,14 @@
             <br>
 
             {% if recruiter.isValid == false %}
+            <div>
                 Statut : <span class="invalidMsg">A valider</span>
+            </div>
+            <div>
                 <button class="btn btn-outline-primary mt-2 mb-5">
                     <a href="{{ path('app_consultant_workingpage_validation_recruiter', {'id': recruiter.Id }) }}">Valider le compte</a>
                 </button>
+            </div>
             {% else %}
                 Statut : <span class="validMsg">Validé</span>
             {% endif %}
