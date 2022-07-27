@@ -1,0 +1,20 @@
+{
+  "name": "eva_back_trtconseil",
+  "version": "1.0.0",
+  "description": "Pour installer le projet sur votre machine, vous devez le cloner depuis le dépôt Github en utilisant la commande\r <br/>\r   `git clone https://github.com/Brunod32/eva_back_trtconseil.git`  \r <br/>\r   Rendez vous deans le dossier ou vous avez cloner le projet en tapant\r <br/>\r  `cd eva_back_trtconseil`  \r <br/>\r  Installer toutes les dépendances \r  <br/> \r  `composer install`  \r <br/>\r   Créez la base de données avec\r  <br/>\r   `php bin/console doctrine:database:create`  \r   puis `php bin/console doctrine:migrations:migrate`\r <br/>\r   Faites la migration avec \r  <br/>\r  `php bin/console make:migration`  \r <br/>\r   Lancez le serveur Symfony \r  <br/>\r   `symfony serve`",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild" : "node_modules/.bin/encore production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brunod32/eva_back_trtconseil.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Brunod32/eva_back_trtconseil/issues"
+  },
+  "homepage": "https://github.com/Brunod32/eva_back_trtconseil#readme"
+}

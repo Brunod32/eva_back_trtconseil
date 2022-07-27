@@ -140,9 +140,7 @@ class ConsultantWorkingpageController extends AbstractController
 
         $email = (new Email())
             ->from('brunod.dev@gmail.com')
-            // Le to ligne 148 fonctionne mais commenté pour les tests, plus de mail envoyer avec adresse sfr en dur dans le code
-            // ->to($recruiterEmail)
-            ->to('bruno.dahlem@sfr.fr')
+            ->to($recruiterEmail)
             ->subject('Nouvelle candidature')
             ->html('
                 <p>Bonjour '. $recruiter->getFirstname().' '.$recruiter->getLastname().',</p>
