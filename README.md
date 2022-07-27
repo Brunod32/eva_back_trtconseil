@@ -17,11 +17,11 @@ Pour installer le projet sur votre machine, vous devez le cloner depuis le dép�
   Créez la base de données avec
  <br/>
   `php bin/console doctrine:database:create`  
-  puis `php bin/console doctrine:migrations:migrate`
 <br/>
   Faites la migration avec 
- <br/>
+<br/>
  `php bin/console make:migration`  
+ puis `php bin/console doctrine:migrations:migrate`
 <br/>
   Lancez le serveur Symfony 
  <br/>
