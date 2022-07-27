@@ -9,8 +9,8 @@
 <div class="container">
     <h1 class="text-center mt-5">{{ app.user.firstname}}, les candidatures à vos offres</h1>
     
-    <button class="btn btn-outline-primary">
-        <a href="{{ path('app_recruiter') }}" title="Retour au menu recruteur"><i class="fa-solid fa-chevron-left"></i></a>
+    <button class="btn btn-outline-primary" title="Retour au menu recruteur">
+        <a href="{{ path('app_recruiter') }}"><i class="fa-solid fa-chevron-left"></i></a>
     </button>
 
     {% for candidacy in candidacies %}
@@ -42,10 +42,9 @@
                         </span>
                             {{ candidacy.jobOffer.salary }} €<br>
                         <span class="fw-bold">
-                            Nombre d'heures: 
+                            Nombre d'heures/semaine: 
                         </span>
                             {{ candidacy.jobOffer.schedule }}
-
                     </p>                             
                     <hr>
                 {% endif %}

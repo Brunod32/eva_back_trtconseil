@@ -8,13 +8,12 @@
 <div class="container">
     <h1 class="text-center mt-5">Liste des comptes recruteurs</h1>
     
-    <button class="btn btn-outline-primary">
-        <a href="{{ path('app_consultant_workingpage')}}" title="Accueil espace Consultant">
+    <button class="btn btn-outline-primary" title="Accueil espace Consultant">
+        <a href="{{ path('app_consultant_workingpage')}}">
             <i class="fa-solid fa-angle-left"></i>
         </a>
     </button>
     <section class="mt-5">
-        {# <h2>Liste des comptes recruteur</h2> #}
         <div class="my-3 mx-5">	
         {% for recruiter in recruiters %}
             Nom : {{ recruiter.lastname | capitalize }}

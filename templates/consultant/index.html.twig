@@ -11,33 +11,27 @@
             </div>
         </div>
 
-        <button class="btn btn-outline-primary">
-            <a href="{{ path('app_administrator') }}" title="Retour au menu administrateur"><i class="fa-solid fa-chevron-left"></i></a>
+        <button class="btn btn-outline-primary" title="Retour au menu administrateur">
+            <a href="{{ path('app_administrator') }}"><i class="fa-solid fa-chevron-left"></i></a>
         </button>
     </div>
-
+<div class="container">
     <div class="m-5">
         <table class="table table-hover table-striped">
             <thead>
                 <tr>
-                    {# <th>Id</th> #}
                     <th>Prénom</th>
                     <th>Nom</th>
                     <th>Email</th>
-                    {# <th>Role</th>
-                    <th>Password</th> #}
                     <th>actions</th>
                 </tr>
             </thead>
             <tbody>
             {% for consultant in consultants %}
                 <tr>
-                    {# <td>{{ consultant.id }}</td> #}
                     <td>{{ consultant.firstname }}</td>
                     <td>{{ consultant.lastname }}</td>
                     <td>{{ consultant.email }}</td>
-                    {# <td>{{ consultant.roles ? consultant.roles|json_encode : '' }}</td>
-                    <td>{{ consultant.password }}</td> #}
                     <td>
                         <a href="{{ path('app_create_consultant_show', {'id': consultant.id}) }}">Voir</a>
                         <a href="{{ path('app_create_consultant_edit', {'id': consultant.id}) }}">Modifier</a>
@@ -51,7 +45,7 @@
             </tbody>
         </table>
     </div>
-
+</div>
     <div class="m-5">
         <a href="{{ path('app_create_consultant_new') }}" class="btn btn-outline-primary">Créer un nouveau consultant</a>
     </div>

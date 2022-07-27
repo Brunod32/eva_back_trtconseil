@@ -101,10 +101,6 @@ class ConsultantWorkingpageController extends AbstractController
         $entityManager->persist($joboffer);
         $entityManager->flush();
 
-        // return $this->redirectToRoute('app_consultant_workingpage_validate_joboffer', [
-        //     'Id' => $id
-        // ]);
-
         return $this->redirectToRoute('app_consultant_workingpage_validate_joboffer', [], Response::HTTP_SEE_OTHER);
     }
 
@@ -148,15 +144,24 @@ class ConsultantWorkingpageController extends AbstractController
             // ->to($recruiterEmail)
             ->to('bruno.dahlem@sfr.fr')
             ->subject('Nouvelle candidature')
-            // ->attachFromPath('uploads/' . $candidate->getCV(), 'CV', 'application/pdf')
             ->html('
                 <p>Bonjour '. $recruiter->getFirstname().' '.$recruiter->getLastname().',</p>
                 <br>
-                <p>Le candidat ' . $candidate->getFirstName() . ' ' . $candidate->getLastName() . ' vient de postuler à votre annonce "' . $jobOffer->getJobTitle() . '".</p>
+                <p>Le candidat ' . $candidate->getFirstName() . ' ' . $candidate->getLastName() . ' a postulé à votre annonce "' . $jobOffer->getJobTitle() . '".</p>
                 <br>
-                <p>Vous trouverez son CV en pièce jointe.</p>
+                <p>Connectez-vous à votre espace recruteur sur le site pour consulter son CV.</p>
+                <br>
+                <p>Cordialement.</p>
+                <p>L\'équipe TRT Conseil.</p>
             ')
-            
+            // ->attachFromPath('uploads/'. $candidate->getCV(), 'CV', 'application/pdf')
+            // ->html('
+            //     <p>Bonjour '. $recruiter->getFirstname().' '.$recruiter->getLastname().',</p>
+            //     <br>
+            //     <p>Le candidat ' . $candidate->getFirstName() . ' ' . $candidate->getLastName() . ' a postulé à votre annonce "' . $jobOffer->getJobTitle() . '".</p>
+            //     <br>
+            //     <p>Vous trouverez son CV en pièce jointe.</p>
+            // ')
         ;
 
         $mailer->send($email);

@@ -29,7 +29,7 @@ class CandidateController extends AbstractController
     #[Route('/{id}/edit', name: 'app_candidate_edit', methods: ['GET', 'POST'])]
     public function edit(int $id, Request $request, Candidate $candidate, CandidateRepository $candidateRepository, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
-        // Récupération du formulaire
+        // Get form
         $form = $this->createForm(CandidateType::class, $candidate);
         $form->handleRequest($request);
 

@@ -22,7 +22,7 @@ class CandidacyController extends AbstractController
         // Récuperer l'annonce
         $emjobOffer = $doctrine->getRepository(JobOffer::class)->find($idJobOffer);
 
-        // On set les values dans table candidacy
+        // Set values in candidacy table 
         $candidacy = new Candidacy();
         $candidacy->setCandidate($emCandidate);
         $candidacy->setJobOffer($emjobOffer);
@@ -36,6 +36,4 @@ class CandidacyController extends AbstractController
 
         return $this->redirectToRoute('app_job_offer_index', [], Response::HTTP_SEE_OTHER);
     }
-
-    
 }

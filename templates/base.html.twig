@@ -5,7 +5,7 @@
         <title>{% block title %}TRT Conseil{% endblock %}</title>
         <meta name="Content-Type" content="UTF-8">
         <meta name="Content-Language" content="fr">
-        {# <meta name="viewport" content="width=500, initial-scale=1.0"> #}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="Description" content="TRT Conseil est une agence de recrutement spécialisée dans l’hôtellerie et la restauration. Fondée en 2014, la société s’est agrandie au fil des ans et possède dorénavant plus de 12 centres dispersés aux quatre coins de la France.
         La crise du coronavirus ayant frappée de plein fouet ce secteur, la société souhaite mettre en place un outil permettant à des recruteurs et candidats de se rencontrer.">
         <meta name="Keywords" content="TRT conseil, restauration, hôtel, emploi, recrutement, candidat">
@@ -14,7 +14,7 @@
         <meta name="Author" content="Bruno Dahlem">
         <meta name="Publisher" content="Bruno Dahlem">
         <meta name="Revisit-After" content="15 days">
-        {# <meta name="Robots" content="all"> #}
+        <meta name="Robots" content="index">
         <meta name="Rating" content="general">
         <meta name="Distribution" content="global">
         <meta name="Geography" content="France">
@@ -29,7 +29,6 @@
         {% endblock %}
 
         {% block javascripts %}
-            <script src="{{  asset('/js/main.js')}}"></script>
         {% endblock %}
     </head>
     <body class="d-flex flex-column min-vh-100">

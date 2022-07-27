@@ -1,35 +1,3 @@
-{# <nav>
-    <div class="navbar-title">
-        <a href="{{ path('app_home') }}">TRT Conseil</a>
-        {% if app.user %}
-            | {{app.user.firstname}} {{app.user.lastname}}
-        {% endif %}
-    
-    </div>
-
-    <div>
-        <ul>
-            <li>
-                <a href="{{ path('app_administrator') }}">Administrateurs</a>
-            </li>
-            <li>
-                <a href="{{ path('app_login') }}">Recruteurs</a>
-            </li>
-            <li>
-                <a href="{{ path('app_candidate') }}">Candidats</a>
-            </li>
-            <li>
-                <a href="{{ path('app_consultant_workingpage') }}">Consultants</a>
-            </li>
-            {% if app.user %}
-                <li class="nav-item">
-                    <a href="{{ path('app_logout') }}"><i class="fa-solid fa-right-from-bracket fa-2x" title="Se déconnecter"></i></a>
-                </li>
-            {% endif %}
-        </ul>
-    </div>
-</nav> #}
-
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ path('app_home')}}">TRT Conseil</a>     

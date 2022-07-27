@@ -95,11 +95,4 @@ class JobOfferController extends AbstractController
 
         return $this->redirectToRoute('app_job_offer_index', [], Response::HTTP_SEE_OTHER);
     }
-
-    // A supprimer si candidature ok
-    #[Route('/job/offer/candidate-apply/{idCandidate}/{idJobOffer}', name: 'app_job_offer_apply')]
-    public function apply(): Response
-    {
-        return $this->render('job_offer/candidateApply.html.twig');
-    }
 }
