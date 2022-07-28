@@ -28,11 +28,6 @@ Pour installer le projet sur votre machine, vous devez le cloner depuis le dép�
   `symfony serve`  
 
 
-## Online usage
-
-The project have been deploy on heroku at  
-
-
 ## Création d'un administrateur
 
 Rendez-vous à l'adresse https://127.0.0.1:8000/register/admin et remplissez le formulaire.

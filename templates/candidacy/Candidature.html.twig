@@ -1,9 +1,0 @@
-<h1>Liste de nouvelles candidatures - {{ liste_date|date('d m Y')}}</h1>
-
-<p>Vous avez reçu de nouvelles candidatures pour les offres d'emploi postées sur TRT conseil.</p>
-
-<ul>
-    {% for candidacy in candidacies %}
-        <li>{{ candidacy }}</li>
-    {% endfor %}
-</ul>
