@@ -22,18 +22,18 @@ class JobOffer
     #[ORM\Column(type: 'string', length: 100)]
     private string $workplace;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'text')]
     private string $description;
 
     #[ORM\Column(type: 'boolean')]
     private bool $isValid = false;
 
     #[ORM\ManyToOne(targetEntity: Consultant::class, inversedBy: 'jobOffers')]
-    #[ORM\JoinColumn(nullable: true)]
+    // #[ORM\JoinColumn(nullable: true)]
     private ?Consultant $consultant;
 
     #[ORM\ManyToOne(targetEntity: Recruiter::class, inversedBy: 'jobOffers')]
-    #[ORM\JoinColumn(nullable: true)]
+    // #[ORM\JoinColumn(nullable: true)]
     private ?Recruiter $recruiter;
 
     #[ORM\Column(type: 'integer')]

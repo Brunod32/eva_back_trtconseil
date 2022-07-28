@@ -17,7 +17,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class JobOfferController extends AbstractController
 {
     // Homepage Joboffer
-    #[Route('/job/offer/', name: 'app_job_offer_index', methods: ['GET'])]
+    #[Route('/joboffer/', name: 'app_job_offer_index', methods: ['GET'])]
     public function index(JobOfferRepository $jobOfferRepository, CandidacyRepository $candidacyRepository): Response
     {   
         return $this->render('job_offer/index.html.twig', [
@@ -27,7 +27,7 @@ class JobOfferController extends AbstractController
     }
 
     // Create new joboffer page
-    #[Route('/recruiter/job/offer/new/{idRecruiter}', name: 'app_job_offer_new', methods: ['GET', 'POST'])]
+    #[Route('/recruiter/joboffer/new/{idRecruiter}', name: 'app_job_offer_new', methods: ['GET', 'POST'])]
     public function new(int $idRecruiter, EntityManagerInterface $entityManager,ManagerRegistry $doctrine, Request $request, JobOfferRepository $jobOfferRepository): Response
     {
         // Récupérer le recruteur
@@ -58,7 +58,7 @@ class JobOfferController extends AbstractController
     }
 
     // Details joboffer page
-    #[Route('/job/offer/{id}', name: 'app_job_offer_show', methods: ['GET'])]
+    #[Route('/joboffer/{id}', name: 'app_job_offer_show', methods: ['GET'])]
     public function show(JobOffer $jobOffer): Response
     {
         return $this->render('job_offer/show.html.twig', [
@@ -86,7 +86,7 @@ class JobOfferController extends AbstractController
     }
 
     // Remove joboffer page
-    #[Route('/job/offer/{id}', name: 'app_job_offer_delete', methods: ['POST'])]
+    #[Route('/joboffer/{id}', name: 'app_job_offer_delete', methods: ['POST'])]
     public function delete(Request $request, JobOffer $jobOffer, JobOfferRepository $jobOfferRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$jobOffer->getId(), $request->request->get('_token'))) {
