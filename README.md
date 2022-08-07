@@ -6,7 +6,7 @@ Pour installer le projet sur votre machine, vous devez le cloner depuis le d√©p√
 <br/>
   `git clone https://github.com/Brunod32/eva_back_trtconseil.git`  
 <br/>
-  Rendez vous deans le dossier ou vous avez cloner le projet en tapant
+  Rendez vous dans le dossier dans lequel vous avez cloner le projet en tapant
 <br/>
  `cd eva_back_trtconseil`  
 <br/>
