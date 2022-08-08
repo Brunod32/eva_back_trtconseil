@@ -140,9 +140,7 @@ class ConsultantWorkingpageController extends AbstractController
         
 
         $email = (new Email())
-            // To send mail locally
-            // ->from('brunod.dev@gmail.com')
-            ->from('app272603299@heroku.com')
+            ->from('brunod.dev@gmail.com')
             ->to($recruiterEmail)
             ->subject('Nouvelle candidature')
             ->html('
