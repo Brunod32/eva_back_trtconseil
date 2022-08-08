@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+use SendGrid\Mail\Mail;
 
 #[Route('/consultant')]
 class ConsultantWorkingpageController extends AbstractController
@@ -139,7 +140,9 @@ class ConsultantWorkingpageController extends AbstractController
         
 
         $email = (new Email())
-            ->from('brunod.dev@gmail.com')
+            // To send mail locally
+            // ->from('brunod.dev@gmail.com')
+            ->from('app272603299@heroku.com')
             ->to($recruiterEmail)
             ->subject('Nouvelle candidature')
             ->html('
