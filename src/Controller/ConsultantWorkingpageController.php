@@ -18,7 +18,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
-use SendGrid\Mail\Mail;
 
 #[Route('/consultant')]
 class ConsultantWorkingpageController extends AbstractController
@@ -138,15 +137,14 @@ class ConsultantWorkingpageController extends AbstractController
         $recruiterEmail = $jobOffer->getRecruiter()->getEmail();
         $recruiter = $jobOffer->getRecruiter();
         
-
         $email = (new Email())
             ->from('brunod.dev@gmail.com')
             ->to($recruiterEmail)
             ->subject('Nouvelle candidature')
             ->html('
-                <p>Bonjour '. $recruiter->getFirstname().' '.$recruiter->getLastname().',</p>
+                <p>Bonjour '. ucfirst($recruiter->getFirstname()).' '.ucfirst($recruiter->getLastname()).',</p>
                 <br>
-                <p>Le candidat ' . $candidate->getFirstName() . ' ' . $candidate->getLastName() . ' a postulé à votre annonce "' . $jobOffer->getJobTitle() . '".</p>
+                <p>Le candidat ' . ucfirst($candidate->getFirstName()) . ' ' . ucfirst($candidate->getLastName()) . ' a postulé à votre annonce "' . $jobOffer->getJobTitle() . '".</p>
                 <br>
                 <p>Connectez-vous à votre espace recruteur sur le site pour consulter son CV.</p>
                 <br>
